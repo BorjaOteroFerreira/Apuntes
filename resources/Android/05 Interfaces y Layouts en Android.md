@@ -2,7 +2,7 @@
 <small>Esta obra está bajo una <a href="https://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional</a>.</small>
 
 
-**Interfaces y Layouts en Android**
+# Interfaces y Layouts en Android
 
 
 ### Introducción a los Layouts
