@@ -186,3 +186,13 @@ function showError(message) {
 
 // Inicializar cuando el documento esté listo
 document.addEventListener('DOMContentLoaded', initializeFileTree);
+
+
+function showError(message) {
+    const sidebar = document.getElementById('sidebar');
+    const error = document.createElement('div');
+    error.className = 'error';
+    error.textContent = message;
+    sidebar.appendChild(error);
+}
+

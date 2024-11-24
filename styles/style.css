@@ -275,6 +275,63 @@ audio::-webkit-media-controls-current-time-display,
 audio::-webkit-media-controls-time-remaining-display {
     color: var(--text-primary);
 }
+.tree-item {
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+}
+
+.tree-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tree-item.active {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.file-icon, .folder-icon, .podcast-icon {
+    margin-right: 8px;
+}
+
+.children {
+    margin-left: 20px;
+    display: none;
+}
+
+.expanded > .folder-icon {
+    transform: rotate(90deg);
+}
+
+.file {
+    color: #d4d4d4;
+}
+
+.podcast {
+    color: #89d4ff;
+}
+
+.loading {
+    padding: 20px;
+    text-align: center;
+    color: #666;
+}
+
+.error {
+    padding: 20px;
+    color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.1);
+    border-left: 3px solid #ff6b6b;
+    margin: 10px;
+}
+
+.console-container {
+    background-color: #1e1e1e;
+    padding: 10px;
+    font-family: monospace;
+    border-radius: 4px;
+}
 
 @media (max-width: 768px) {
     #sidebar {
