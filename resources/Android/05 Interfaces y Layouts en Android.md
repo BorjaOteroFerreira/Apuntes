@@ -1,5 +1,8 @@
+#### Tanto el contenido como la estructura de estos apuntes ha sido realizado integramente por __David Lopez Amenedo__,
+#### Este obra está bajo una [licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/).
+
 **Interfaces y Layouts en Android**
-==================================
+
 
 ### Introducción a los Layouts
 
