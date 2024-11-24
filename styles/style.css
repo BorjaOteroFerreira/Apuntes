@@ -26,6 +26,8 @@ body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
     padding: 10px;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 #toggleSidebar {
@@ -36,7 +38,7 @@ body {
     padding: 10px 15px;
     font-size: 18px;
     color: var(--text-primary);
-    background-color:#1e1e1e0e;
+    background-color: #1e1e1e0e;
     border: 1px solid var(--border-color);
     border-radius: 5px;
     cursor: pointer;
@@ -48,15 +50,13 @@ body {
     color: white;
 }
 
-
 #sidebar.hidden {
     margin-left: -450px; /* Ocultar el sidebar completamente */
 }
 
-
 #sidebar {
-    width: 450px; /* Cambia a tu ancho real */
-    margin-left: 0; /* Posición inicial visible */
+    width: 450px;
+    margin-left: 0;
     background-color: var(--bg-secondary);
     border-right: 1px solid var(--border-color);
     padding: 20px;
@@ -68,10 +68,10 @@ body {
 
 #content {
     flex-grow: 1;
-    margin-left: 470px; /* Ajusta según el ancho del sidebar */
+    margin-left: 470px;
     padding: 20px;
     overflow-y: auto;
-    max-width: calc(100% - 470px); /* Evita que el contenido se solape */
+    max-width: calc(100% - 470px);
     background-color: var(--bg-primary);
     transition: margin-left 0.3s ease;
 }
@@ -110,10 +110,9 @@ body {
 }
 
 #content.sidebar-collapsed {
-    margin-left: 0; /* Ajustar el contenido cuando el sidebar desaparece */
-    max-width: 100%; /* Hacer que el contenido ocupe todo el ancho */
+    margin-left: 0;
+    max-width: 100%;
 }
-
 
 #search {
     padding: 10px;
@@ -159,10 +158,22 @@ body {
     margin: 1em 0 0.5em;
 }
 
-#content h1 { font-size: 2.5em; border-bottom: 2px solid var(--accent-primary); }
-#content h2 { font-size: 2em; }
-#content h3 { font-size: 1.75em; }
-#content h4 { font-size: 1.5em; }
+#content h1 {
+    font-size: 2.5em;
+    border-bottom: 2px solid var(--accent-primary);
+}
+
+#content h2 {
+    font-size: 2em;
+}
+
+#content h3 {
+    font-size: 1.75em;
+}
+
+#content h4 {
+    font-size: 1.5em;
+}
 
 #content p {
     margin-bottom: 1.2em;
@@ -220,8 +231,33 @@ body {
     line-height: 1.5;
 }
 
-pre[class*="language-"] {
-    background-color: var(--code-bg) !important;
+.tree-item {
+    padding: 8px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.2s;
+    font-size: 14px;
+}
+
+.tree-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.tree-item.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.children {
+    margin-left: 20px;
+    display: none;
+    padding-left: 10px;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.folder-icon, .file-icon, .podcast-icon {
+    margin-right: 8px;
+    font-size: 16px;
 }
 
 #content table {
@@ -230,8 +266,7 @@ pre[class*="language-"] {
     margin: 1em 0;
 }
 
-#content th,
-#content td {
+#content th, #content td {
     border: 1px solid var(--border-color);
     padding: 8px;
     text-align: left;
@@ -246,56 +281,27 @@ pre[class*="language-"] {
     background-color: var(--bg-secondary);
 }
 
-.console-container {
-    background-color: black;
-    color: lime;
-    padding: 10px;
-    font-family: 'Consolas', monospace;
-    border-radius: 5px;
-    margin-top: 10px;
-    overflow-y: auto;
-    max-height: 300px;
-    white-space: pre-wrap;
-}
-
-/* Scrollbar styles */
-::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--border-color);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--accent-primary);
-}
-
 /* Audio player styles */
 #audio-player-container {
-
-    padding: 15px;
+    padding: 10px;
     background-color: var(--bg-secondary);
     border-top: 1px solid var(--border-color);
     position: sticky;
     bottom: 0;
+    z-index: 100;
 }
 
 #audio-player {
     width: 100%;
-    margin-top: 10px;
+}
 
-}
 .sidebar-audio-player {
-    width: 100%; /* Asegura que ocupe todo el ancho del contenedor */
-    margin: 10px 0; /* Espaciado arriba y abajo */
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    display: block;
 }
+
 #audio-title {
     color: var(--accent-primary);
     font-size: 0.9em;
@@ -303,79 +309,7 @@ pre[class*="language-"] {
     word-break: break-word;
 }
 
-audio::-webkit-media-controls-panel {
-    background-color: var(--bg-secondary);
-}
-
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display {
-    color: var(--text-primary);
-}
-.tree-item {
-    padding: 5px 10px; /* Espaciado interno */
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.2s;
-    font-size: 14px;
-    font-family: Arial, sans-serif;
-}
-
-.tree-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.tree-item.active {
-    background-color: rgba(255, 255, 255, 0.2);
-}
-
-.folder-icon, .file-icon, .podcast-icon {
-    margin-right: 8px;
-    font-size: 16px;
-}
-
-.children {
-    margin-left: 20px; /* Indentación para subcarpetas */
-    display: none;
-    padding-left: 10px; /* Espaciado adicional opcional */
-    border-left: 1px solid rgba(255, 255, 255, 0.1); /* Línea que marca el nivel */
-}
-
-.expanded > .folder-icon {
-    transform: rotate(90deg);
-}
-
-.file {
-    color: #d4d4d4;
-    padding-left: 20px; /* Indentación específica para archivos */
-}
-
-.podcast {
-    color: #89d4ff;
-    padding-left: 20px; /* Indentación específica para podcasts */
-}
-
-.loading {
-    padding: 20px;
-    text-align: center;
-    color: #666;
-}
-
-.error {
-    padding: 20px;
-    color: #ff6b6b;
-    background-color: rgba(255, 107, 107, 0.1);
-    border-left: 3px solid #ff6b6b;
-    margin: 10px;
-}
-
-.directory-info {
-    font-weight: bold;
-    font-size: 16px;
-    padding: 10px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
+/* Responsive Design */
 @media (max-width: 768px) {
     #sidebar {
         position: relative;
@@ -383,7 +317,30 @@ audio::-webkit-media-controls-time-remaining-display {
         margin-bottom: 10px;
         height: auto;
     }
+
     #content {
         margin-left: 0;
+        max-width: 100%;
+    }
+
+    .tree-item {
+        font-size: 16px;
+    }
+
+    .folder-icon, .file-icon, .podcast-icon {
+        font-size: 18px;
+    }
+
+    #audio-player-container {
+        padding: 10px;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    body {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 }
