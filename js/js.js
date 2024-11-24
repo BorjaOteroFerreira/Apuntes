@@ -62,29 +62,41 @@ async function initializeFileTree() {
 function createTreeView(tree, parentElement, path = '') {
     for (const [key, value] of Object.entries(tree)) {
         if (key === 'files' || key === 'podcast') continue;
-        
+
         const item = document.createElement('div');
         const content = document.createElement('div');
-        
+
         item.style.marginLeft = path ? '20px' : '0';
         content.className = 'tree-item';
-        
+
         content.innerHTML = `<span class="folder-icon">📁</span> ${key}`;
         content.onclick = (e) => {
-            e.stopPropagation();
-            const treeItem = e.target.closest('.tree-item');
-            treeItem.classList.toggle('expanded');
+            e.target.closest('.tree-item').classList.toggle('expanded');
             const children = item.querySelector('.children');
             if (children) {
                 children.style.display = children.style.display === 'none' ? 'block' : 'none';
             }
         };
         item.appendChild(content);
-        
+
         const children = document.createElement('div');
         children.className = 'children';
         children.style.display = 'none';
-        
+
+        // Mostrar el reproductor del podcast si existe
+        if (value.podcast && value.podcast.length > 0) {
+            const podcastFile = value.podcast[0]; // Asumimos que solo hay un podcast por carpeta
+            const podcastItem = document.createElement('div');
+            podcastItem.className = 'tree-item podcast';
+            podcastItem.innerHTML = `
+            <span class="title">Podcast</span>
+                <audio controls class="sidebar-audio-player">
+                    <source src="https://raw.githubusercontent.com/BorjaOteroFerreira/Apuntes/main/resources${path}/${key}/${podcastFile}" type="audio/wav">
+                    Tu navegador no soporta el elemento de audio.
+                </audio>`;
+            children.appendChild(podcastItem);
+        }
+
         // Agregar archivos MD si existen
         if (value.files) {
             value.files.sort().forEach(file => {
@@ -100,33 +112,18 @@ function createTreeView(tree, parentElement, path = '') {
                 children.appendChild(fileItem);
             });
         }
-        
-        // Agregar podcasts si existen
-        if (value.podcast) {
-            value.podcast.forEach(podcastFile => {
-                const podcastItem = document.createElement('div');
-                podcastItem.className = 'tree-item podcast';
-                podcastItem.innerHTML = `<span class="podcast-icon">🎧</span> ${podcastFile}`;
-                podcastItem.onclick = (e) => {
-                    e.stopPropagation();
-                    document.querySelectorAll('.tree-item.podcast').forEach(el => el.classList.remove('active'));
-                    podcastItem.classList.add('active');
-                    setupAudioPlayer(`${path}/${key}/${podcastFile}`);
-                };
-                children.appendChild(podcastItem);
-            });
-        }
-        
+
         // Procesar subcarpetas recursivamente
         createTreeView(value, children, `${path}/${key}`);
-        
+
         if (children.children.length > 0) {
             item.appendChild(children);
         }
-        
+
         parentElement.appendChild(item);
     }
 }
+
 
 async function loadMarkdownContent(filePath) {
     const content = document.getElementById('content');
@@ -196,3 +193,4 @@ function showError(message) {
     sidebar.appendChild(error);
 }
 
+document.addEventListener('DOMContentLoaded', initializeFileTree);
