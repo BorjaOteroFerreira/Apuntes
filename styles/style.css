@@ -54,7 +54,7 @@ body {
 }
 
 #sidebar.hidden {
-    margin-left: -450px; /* Ocultar el sidebar completamente */
+    margin-left: -450px; 
 }
 
 
