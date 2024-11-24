@@ -89,7 +89,6 @@ function createTreeView(tree, parentElement, path = '') {
             const podcastItem = document.createElement('div');
             podcastItem.className = 'tree-item podcast';
             podcastItem.innerHTML = `
-            <span class="title">Podcast</span>
                 <audio controls class="sidebar-audio-player">
                     <source src="https://raw.githubusercontent.com/BorjaOteroFerreira/Apuntes/main/resources${path}/${key}/${podcastFile}" type="audio/wav">
                     Tu navegador no soporta el elemento de audio.
