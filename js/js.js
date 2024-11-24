@@ -39,6 +39,40 @@ async function fetchDirectoryStructure(path = '') {
     }
 }
 
+function simulateConsoleOutput(codeBlock) {
+    const lines = codeBlock.textContent.split('\n');
+    const parent = codeBlock.parentElement;
+    const lineHeight = 20;
+    const maxLines = 15;
+    parent.innerHTML = '';
+    parent.classList.add('console-container');
+
+    parent.style.height = `${lineHeight * maxLines}px`;
+    parent.style.overflowY = 'auto';
+
+    let index = 0;
+
+    function writeLine() {
+        if (index < lines.length) {
+            const line = document.createElement('div');
+            line.textContent = lines[index];
+            parent.appendChild(line);
+            parent.scrollTop = parent.scrollHeight;
+            index++;
+            setTimeout(writeLine, 200);
+        } else {
+            setTimeout(() => {
+                parent.innerHTML = '';
+                index = 0;
+                writeLine();
+            }, 1000);
+        }
+    }
+
+    writeLine();
+}
+
+
 async function initializeFileTree() {
     try {
         const sidebar = document.getElementById('sidebar');
@@ -53,6 +87,7 @@ async function initializeFileTree() {
         } else {
             throw new Error('No se pudo cargar la estructura de archivos');
         }
+        
     } catch (error) {
         console.error('Error al cargar el árbol de archivos:', error);
         showError('Error al cargar la estructura de archivos');
@@ -144,6 +179,8 @@ async function loadMarkdownContent(filePath) {
         
         content.innerHTML = htmlContent;
         Prism.highlightAllUnder(content);
+        const codeBlocks = content.querySelectorAll('pre > code.language-bash, pre > code:not([class])');
+        codeBlocks.forEach(codeBlock => simulateConsoleOutput(codeBlock));
     } catch (error) {
         console.error('Error al cargar el archivo:', error);
         content.innerHTML = `<div class="error">Error al cargar el contenido del archivo</div>`;
