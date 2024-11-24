@@ -2,27 +2,27 @@ let currentFile = null;
 
 async function fetchDirectoryStructure(path = '') {
     try {
-        const username = 'BorjaOteroFerreira'; // Tu usuario
-        const repo = 'Apuntes'; // Tu repositorio
+        const username = 'BorjaOteroFerreira';
+        const repo = 'Apuntes';
         const branch = 'main';
         
-        const response = await fetch(
-            `https://api.github.com/repos/${username}/${repo}/contents/resources${path}`,
-            {
-                headers: {
-                    'Accept': 'application/vnd.github.v3+json'
-                }
-            }
-        );
+        const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/resources${path}`;
+        console.log(`Fetching: ${apiUrl}`); // Debug
         
-        if (!response.ok) throw new Error('Error al obtener contenido del repositorio');
+        const response = await fetch(apiUrl, {
+            headers: {
+                'Accept': 'application/vnd.github.v3+json'
+            }
+        });
+        
+        if (!response.ok) throw new Error(`Error al obtener contenido del repositorio: ${response.statusText}`);
         
         const items = await response.json();
         const structure = {};
         
         for (const item of items) {
             if (item.type === 'dir') {
-                structure[item.name] = await fetchDirectoryStructure(`/${item.name}`);
+                structure[item.name] = await fetchDirectoryStructure(`${path}/${item.name}`);
             } else if (item.name.endsWith('.md')) {
                 if (!structure.files) structure.files = [];
                 structure.files.push(item.name);
@@ -42,6 +42,8 @@ async function fetchDirectoryStructure(path = '') {
 async function initializeFileTree() {
     try {
         const sidebar = document.getElementById('sidebar');
+        if (!sidebar) throw new Error('No se encontró el elemento sidebar');
+        
         const dirInfo = sidebar.querySelector('.directory-info');
         dirInfo.textContent = 'Apuntes';
         
@@ -69,7 +71,9 @@ function createTreeView(tree, parentElement, path = '') {
         
         content.innerHTML = `<span class="folder-icon">📁</span> ${key}`;
         content.onclick = (e) => {
-            e.target.closest('.tree-item').classList.toggle('expanded');
+            e.stopPropagation();
+            const treeItem = e.target.closest('.tree-item');
+            treeItem.classList.toggle('expanded');
             const children = item.querySelector('.children');
             if (children) {
                 children.style.display = children.style.display === 'none' ? 'block' : 'none';
@@ -97,7 +101,7 @@ function createTreeView(tree, parentElement, path = '') {
             });
         }
         
-        // Agregar podcast si existe
+        // Agregar podcasts si existen
         if (value.podcast) {
             value.podcast.forEach(podcastFile => {
                 const podcastItem = document.createElement('div');
@@ -129,14 +133,14 @@ async function loadMarkdownContent(filePath) {
     content.innerHTML = '<div class="loading">Cargando contenido...</div>';
 
     try {
-        const username = 'TU_USUARIO_GITHUB';
-        const repo = 'TU_REPOSITORIO';
+        const username = 'BorjaOteroFerreira';
+        const repo = 'Apuntes';
         const branch = 'main';
         
-        const response = await fetch(
-            `https://raw.githubusercontent.com/${username}/${repo}/${branch}/resources${filePath}`
-        );
+        const rawUrl = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/resources${filePath}`;
+        console.log(`Loading Markdown: ${rawUrl}`); // Debug
         
+        const response = await fetch(rawUrl);
         if (!response.ok) throw new Error('No se pudo cargar el archivo');
         
         const text = await response.text();
@@ -160,46 +164,16 @@ async function setupAudioPlayer(audioPath) {
         const repo = 'Apuntes';
         const branch = 'main';
         
+        const audioUrl = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/resources${audioPath}`;
+        console.log(`Setting up audio: ${audioUrl}`); // Debug
+        
         audioTitle.textContent = "Formato Podcast";
-        audioPlayer.src = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/resources${audioPath}`;
+        audioPlayer.src = audioUrl;
         playerContainer.style.display = 'block';
     } catch (error) {
         console.error('Error al cargar el archivo de audio:', error);
         playerContainer.style.display = 'none';
     }
-}
-
-function simulateConsoleOutput(codeBlock) {
-    const lines = codeBlock.textContent.split('\n');
-    const parent = codeBlock.parentElement;
-    const lineHeight = 20;
-    const maxLines = 15;
-    parent.innerHTML = '';
-    parent.classList.add('console-container');
-
-    parent.style.height = `${lineHeight * maxLines}px`;
-    parent.style.overflowY = 'auto';
-
-    let index = 0;
-
-    function writeLine() {
-        if (index < lines.length) {
-            const line = document.createElement('div');
-            line.textContent = lines[index];
-            parent.appendChild(line);
-            parent.scrollTop = parent.scrollHeight;
-            index++;
-            setTimeout(writeLine, 200);
-        } else {
-            setTimeout(() => {
-                parent.innerHTML = '';
-                index = 0;
-                writeLine();
-            }, 1000);
-        }
-    }
-
-    writeLine();
 }
 
 function showError(message) {
@@ -209,72 +183,6 @@ function showError(message) {
     error.textContent = message;
     sidebar.appendChild(error);
 }
-
-// Estilos CSS
-const styles = `
-    .tree-item {
-        padding: 8px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        transition: background-color 0.2s;
-    }
-    
-    .tree-item:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .tree-item.active {
-        background-color: rgba(255, 255, 255, 0.15);
-    }
-    
-    .file-icon, .folder-icon, .podcast-icon {
-        margin-right: 8px;
-    }
-    
-    .children {
-        margin-left: 20px;
-        display: none;
-    }
-    
-    .expanded > .folder-icon {
-        transform: rotate(90deg);
-    }
-    
-    .file {
-        color: #d4d4d4;
-    }
-    
-    .podcast {
-        color: #89d4ff;
-    }
-
-    .loading {
-        padding: 20px;
-        text-align: center;
-        color: #666;
-    }
-
-    .error {
-        padding: 20px;
-        color: #ff6b6b;
-        background-color: rgba(255, 107, 107, 0.1);
-        border-left: 3px solid #ff6b6b;
-        margin: 10px;
-    }
-
-    .console-container {
-        background-color: #1e1e1e;
-        padding: 10px;
-        font-family: monospace;
-        border-radius: 4px;
-    }
-`;
-
-// Agregar estilos
-const styleSheet = document.createElement('style');
-styleSheet.textContent = styles;
-document.head.appendChild(styleSheet);
 
 // Inicializar cuando el documento esté listo
 document.addEventListener('DOMContentLoaded', initializeFileTree);
