@@ -11,8 +11,10 @@
     --error-text: #ff9999;
     --success-bg: #224422;
     --success-text: #99ff99;
+    --scrollbar-bg: #1e1e1e;
+    --scrollbar-thumb: #333;
+    --scrollbar-thumb-hover: #444;
 }
-
 * {
     margin: 0;
     padding: 0;
@@ -43,6 +45,7 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    
 }
 
 #toggleSidebar:hover {
@@ -54,7 +57,9 @@ body {
     margin-left: -450px; /* Ocultar el sidebar completamente */
 }
 
+
 #sidebar {
+    overflow-y: auto;
     width: 450px;
     margin-left: 0;
     background-color: var(--bg-secondary);
@@ -64,16 +69,63 @@ body {
     height: calc(100vh - 20px);
     transition: margin-left 0.3s ease;
     padding-top: 80px;
+    /* Estilos para Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+}
+
+/* Estilos para navegadores WebKit (Chrome, Safari, Edge) */
+#sidebar::-webkit-scrollbar {
+    width: 8px;
+}
+
+#sidebar::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg);
+    border-radius: 4px;
+}
+
+#sidebar::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 4px;
+    border: 2px solid var(--scrollbar-bg);
+}
+
+#sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
 }
 
 #content {
     flex-grow: 1;
     margin-left: 470px;
     padding: 20px;
+    flex-grow: 1;
     overflow-y: auto;
     max-width: calc(100% - 470px);
     background-color: var(--bg-primary);
     transition: margin-left 0.3s ease;
+    /* Estilos para Firefox */
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);
+}
+
+/* Estilos para navegadores WebKit (Chrome, Safari, Edge) */
+#content::-webkit-scrollbar {
+    width: 8px;
+}
+
+#content::-webkit-scrollbar-track {
+    background: var(--scrollbar-bg);
+    border-radius: 4px;
+}
+
+#content::-webkit-scrollbar-thumb {
+    background-color: var(--scrollbar-thumb);
+    border-radius: 4px;
+    border: 2px solid var(--scrollbar-bg);
+}
+
+#content::-webkit-scrollbar-thumb:hover {
+    background-color: var(--scrollbar-thumb-hover);
 }
 
 .md-title {
