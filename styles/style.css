@@ -28,26 +28,52 @@ body {
     padding: 10px;
 }
 
+#toggleSidebar {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 1000;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: var(--text-primary);
+    background-color:#1e1e1e0e;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#toggleSidebar:hover {
+    background-color: var(--accent-primary);
+    color: white;
+}
+
+
+#sidebar.hidden {
+    margin-left: -450px; /* Ocultar el sidebar completamente */
+}
+
+
 #sidebar {
-    width: 500px;
+    width: 450px; /* Cambia a tu ancho real */
+    margin-left: 0; /* Posición inicial visible */
     background-color: var(--bg-secondary);
     border-right: 1px solid var(--border-color);
     padding: 20px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     position: fixed;
     height: calc(100vh - 20px);
+    transition: margin-left 0.3s ease;
+    padding-top: 80px;
 }
 
 #content {
     flex-grow: 1;
-    margin-left: 520px;
+    margin-left: 470px; /* Ajusta según el ancho del sidebar */
     padding: 20px;
     overflow-y: auto;
-    max-width: 800px;
+    max-width: calc(100% - 470px); /* Evita que el contenido se solape */
     background-color: var(--bg-primary);
+    transition: margin-left 0.3s ease;
 }
 
 .md-title {
@@ -82,6 +108,12 @@ body {
 #selectDir:hover {
     background-color: var(--accent-hover);
 }
+
+#content.sidebar-collapsed {
+    margin-left: 0; /* Ajustar el contenido cuando el sidebar desaparece */
+    max-width: 100%; /* Hacer que el contenido ocupe todo el ancho */
+}
+
 
 #search {
     padding: 10px;

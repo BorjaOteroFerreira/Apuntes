@@ -39,6 +39,27 @@ async function fetchDirectoryStructure(path = '') {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleSidebarButton = document.getElementById('toggleSidebar');
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('content');
+    let sidebarVisible = true;
+
+    toggleSidebarButton.addEventListener('click', () => {
+        sidebarVisible = !sidebarVisible;
+
+        if (sidebarVisible) {
+            // Mostrar sidebar
+            sidebar.classList.remove('hidden');
+            content.classList.remove('sidebar-collapsed');
+        } else {
+            // Ocultar sidebar
+            sidebar.classList.add('hidden');
+            content.classList.add('sidebar-collapsed');
+        }
+    });
+});
+
 function simulateConsoleOutput(codeBlock) {
     const lines = codeBlock.textContent.split('\n');
     const parent = codeBlock.parentElement;
