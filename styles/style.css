@@ -310,7 +310,7 @@ body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
     #sidebar {
         position: relative;
         width: 100%;
