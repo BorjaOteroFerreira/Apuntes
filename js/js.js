@@ -129,8 +129,8 @@ async function loadMarkdownContent(filePath) {
     content.innerHTML = '<div class="loading">Cargando contenido...</div>';
 
     try {
-        const username = 'BorjaOteroFerreira';
-        const repo = 'Apuntes';
+        const username = 'TU_USUARIO_GITHUB';
+        const repo = 'TU_REPOSITORIO';
         const branch = 'main';
         
         const response = await fetch(
@@ -143,13 +143,7 @@ async function loadMarkdownContent(filePath) {
         const htmlContent = marked.parse(text);
         
         content.innerHTML = htmlContent;
-        
-        // Resaltar la sintaxis del código
         Prism.highlightAllUnder(content);
-        
-        // Simular salida de consola para bloques de código bash
-        const codeBlocks = content.querySelectorAll('pre > code.language-bash, pre > code:not([class])');
-        codeBlocks.forEach(codeBlock => simulateConsoleOutput(codeBlock));
     } catch (error) {
         console.error('Error al cargar el archivo:', error);
         content.innerHTML = `<div class="error">Error al cargar el contenido del archivo</div>`;
