@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de Apuntes - DAM2</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <style>
+        :root {
+            --bg-primary: #121212;
+            --bg-secondary: #1e1e1e;
+            --text-primary: #f5f5f5;
+            --text-secondary: #cfcfcf;
+            --accent-primary: #00bcd4;
+            --accent-hover: #4dd0e1;
+            --border-color: #333;
+            --code-bg: #2b2b2b;
+            --error-bg: #442222;
+            --error-text: #ff9999;
+            --success-bg: #224422;
+            --success-text: #99ff99;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            display: flex;
+            height: 100vh;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            padding: 10px;
+        }
+
+        #sidebar {
+            width: 300px;
+            background-color: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            position: fixed;
+            height: calc(100vh - 20px);
+        }
+
+        #content {
+            flex-grow: 1;
+            margin-left: 320px;
+            padding: 20px;
+            overflow-y: auto;
+            max-width: 800px;
+            background-color: var(--bg-primary);
+        }
+
+        .md-title {
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            word-break: break-word;
+            color: var(--text-primary);
+        }
+
+        .md-title:hover {
+            background-color: var(--border-color);
+        }
+
+        .md-title.active {
+            background-color: var(--accent-primary);
+            color: white;
+        }
+
+        #selectDir {
+            padding: 10px;
+            background-color: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        #selectDir:hover {
+            background-color: var(--accent-hover);
+        }
+
+        #search {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background-color: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 0.9em;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        #search:focus {
+            border-color: var(--accent-primary);
+        }
+
+        .loading {
+            padding: 20px;
+            text-align: center;
+            color: var(--text-secondary);
+        }
+
+        .error {
+            padding: 20px;
+            color: var(--error-text);
+            background-color: var(--error-bg);
+            border: 1px solid var(--error-text);
+            border-radius: 4px;
+            margin: 10px;
+        }
+
+        .directory-info {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            word-break: break-word;
+        }
+
+        /* Markdown styles */
+        #content h1, #content h2, #content h3, #content h4 {
+            color: var(--accent-primary);
+            margin: 1em 0 0.5em;
+        }
+
+        #content h1 { font-size: 2.5em; border-bottom: 2px solid var(--accent-primary); }
+        #content h2 { font-size: 2em; }
+        #content h3 { font-size: 1.75em; }
+        #content h4 { font-size: 1.5em; }
+
+        #content p {
+            margin-bottom: 1.2em;
+            color: var(--text-primary);
+        }
+
+        #content ul, #content ol {
+            margin: 1em 0;
+            padding-left: 2em;
+            color: var(--text-primary);
+        }
+
+        #content li {
+            margin-bottom: 0.5em;
+        }
+
+        #content a {
+            color: var(--accent-primary);
+            text-decoration: none;
+        }
+
+        #content a:hover {
+            text-decoration: underline;
+        }
+
+        #content blockquote {
+            border-left: 4px solid var(--accent-primary);
+            margin: 1em 0;
+            padding: 0.5em 1em;
+            background-color: var(--bg-secondary);
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        #content code:not([class*="language-"]) {
+            background-color: var(--code-bg);
+            padding: 0.2em 0.4em;
+            border-radius: 3px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            color: #ff99cc;
+        }
+
+        #content pre {
+            margin: 1.5em 0;
+            padding: 1em;
+            border-radius: 5px;
+            background-color: var(--code-bg);
+            overflow-x: auto;
+        }
+
+        #content pre code {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        pre[class*="language-"] {
+            background-color: var(--code-bg) !important;
+        }
+
+        #content table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 1em 0;
+        }
+
+        #content th,
+        #content td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: left;
+        }
+
+        #content th {
+            background-color: var(--bg-secondary);
+            color: var(--accent-primary);
+        }
+
+        #content tr:nth-child(even) {
+            background-color: var(--bg-secondary);
+        }
+
+        .console-container {
+            background-color: black;
+            color: lime;
+            padding: 10px;
+            font-family: 'Consolas', monospace;
+            border-radius: 5px;
+            margin-top: 10px;
+            overflow-y: auto;
+            max-height: 300px;
+            white-space: pre-wrap;
+        }
+
+        /* Scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-primary);
+        }
+
+        /* Audio player styles */
+        #audio-player-container {
+       
+            padding: 15px;
+            background-color: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            position: sticky;
+            bottom: 0;
+        }
+
+        #audio-player {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        #audio-title {
+            color: var(--accent-primary);
+            font-size: 0.9em;
+            margin-bottom: 5px;
+            word-break: break-word;
+        }
+
+        audio::-webkit-media-controls-panel {
+            background-color: var(--bg-secondary);
+        }
+
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display {
+            color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            #sidebar {
+                position: relative;
+                width: 100%;
+                margin-bottom: 10px;
+                height: auto;
+            }
+            #content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <button id="selectDir">Seleccionar Directorio</button>
+        <div class="directory-info">Ningún directorio seleccionado</div>
+        <div id="audio-player-container" style="display: none;">
+            <div id="audio-title"></div>
+            <audio id="audio-player" controls></audio>
+        </div>
+    </div>
+    <div id="content">
+        <div class="loading">Selecciona un archivo para ver su contenido</div>
+    </div>
+
+    <script>
+        let currentDirectory = null;
+        let fileHandles = new Map();
+        let audioHandle = null;
+
+        marked.setOptions({
+            highlight: function(code, lang) {
+                if (Prism.languages[lang]) {
+                    return Prism.highlight(code, Prism.languages[lang], lang);
+                }
+                return code;
+            }
+        });
+
+        async function initializeDirectoryPicker() {
+            const button = document.getElementById('selectDir');
+            button.addEventListener('click', async () => {
+                try {
+                    const dirHandle = await window.showDirectoryPicker();
+                    await loadDirectory(dirHandle);
+                } catch (error) {
+                    console.error('Error al seleccionar directorio:', error);
+                }
+            });
+        }
+
+        async function loadDirectory(dirHandle) {
+            currentDirectory = dirHandle;
+            fileHandles.clear();
+            
+            const sidebar = document.getElementById('sidebar');
+            const dirInfo = sidebar.querySelector('.directory-info');
+            dirInfo.textContent = `Apuntes de ${dirHandle.name}`;
+            
+            const existingFiles = sidebar.querySelectorAll('.md-title');
+            existingFiles.forEach(el => el.remove());
+
+            const playerContainer = document.getElementById('audio-player-container');
+            playerContainer.style.display = 'none';
+
+            for await (const entry of dirHandle.values()) {
+                if (entry.kind === 'file') {
+                    if (entry.name.endsWith('.md')) {
+                        const div = document.createElement('div');
+                        div.className = 'md-title';
+                        div.textContent = entry.name.replace('.md', '');
+                        div.onclick = () => loadMarkdownContent(entry);
+                        sidebar.appendChild(div);
+                        fileHandles.set(entry.name, entry);
+                    } else if (entry.name.endsWith('.wav')) {
+                        audioHandle = entry;
+                        await setupAudioPlayer(entry);
+                    }
+                }
+            }
+
+            if (fileHandles.size === 0) {
+                const noFiles = document.createElement('div');
+                noFiles.className = 'error';
+                noFiles.textContent = 'No se encontraron archivos .md en este directorio';
+                sidebar.appendChild(noFiles);
+            }
+        }
+
+        async function loadMarkdownContent(fileHandle) {
+            const content = document.getElementById('content');
+            content.innerHTML = '<div class="loading">Cargando contenido...</div>';
+
+            try {
+                document.querySelectorAll('.md-title').forEach(el => el.classList.remove('active'));
+                [...document.querySelectorAll('.md-title')]
+                    .find(el => el.textContent === fileHandle.name.replace('.md', ''))
+                    ?.classList.add('active');
+
+                const file = await fileHandle.getFile();
+                const text = await file.text();
+                const htmlContent = marked.parse(text);
+
+                content.innerHTML = htmlContent;
+
+                Prism.highlightAllUnder(content);
+
+                const codeBlocks = content.querySelectorAll('pre > code.language-bash, pre > code:not([class])');
+                codeBlocks.forEach(codeBlock => simulateConsoleOutput(codeBlock));
+            } catch (error) {
+                content.innerHTML = `<div class="error">Error al cargar el contenido del archivo</div>`;
+                console.error('Error al cargar el archivo:', error);
+            }
+        }
+
+        function simulateConsoleOutput(codeBlock) {
+            const lines = codeBlock.textContent.split('\n');
+            const parent = codeBlock.parentElement;
+            const lineHeight = 20;
+            const maxLines = 15;
+            parent.innerHTML = '';
+            parent.classList.add('console-container');
+
+            parent.style.height = `${lineHeight * maxLines}px`;
+            parent.style.overflowY = 'auto';
+
+            let index = 0;
+
+            function writeLine() {
+                if (index < lines.length) {
+                    const line = document.createElement('div');
+                    line.textContent = lines[index];
+                    parent.appendChild(line);
+                    parent.scrollTop = parent.scrollHeight;
+                    index++;
+                    setTimeout(writeLine, 200);
+                } else {
+                    setTimeout(() => {
+                        parent.innerHTML = '';
+                        index = 0;
+                        writeLine();
+                    }, 1000);
+                }
+            }
+
+            writeLine();
+        }
+
+        async function setupAudioPlayer(audioFileHandle) {
+            const playerContainer = document.getElementById('audio-player-container');
+            const audioTitle = document.getElementById('audio-title');
+            const audioPlayer = document.getElementById('audio-player');
+
+            try {const file = await audioFileHandle.getFile();
+                const audioUrl = URL.createObjectURL(file);
+                
+                audioTitle.textContent = "Formato Podcast";
+                audioPlayer.src = audioUrl;
+                playerContainer.style.display = 'block';
+
+                audioPlayer.onload = () => URL.revokeObjectURL(audioUrl);
+            } catch (error) {
+                console.error('Error al cargar el archivo de audio:', error);
+                playerContainer.style.display = 'none';
+            }
+        }
+
+        if (!('showDirectoryPicker' in window)) {
+            document.body.innerHTML = `
+                <div class="error" style="margin: 20px;">
+                    Tu navegador no soporta la API de acceso a archivos. 
+                    Por favor, usa un navegador más reciente como Arc, Safari, Opera o Chrome.
+                </div>
+            `;
+        } else {
+            initializeDirectoryPicker();
+        }
+    </script>
+</body>
+</html>
