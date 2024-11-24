@@ -20,7 +20,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+/* Estilos para la selección de texto - Navegadores WebKit */
+::selection {
+    background-color: #ffabd577; /* Rosa chicle */
+    color: white; /* Color del texto cuando está seleccionado */
+}
 
+/* Estilos para Firefox */
+::-moz-selection {
+    background-color: #ffabd577;
+    color: white;
+}
 body {
     font-family: 'Inter', Arial, sans-serif;
     display: flex;
