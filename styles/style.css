@@ -79,7 +79,7 @@ body {
     position: fixed;
     height: calc(100vh - 20px);
     transition: margin-left 0.3s ease;
-    padding-top: 80px;
+    padding-top: 60px;
     /* Estilos para Firefox */
     scrollbar-width: thin;
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-bg);

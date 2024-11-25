@@ -100,7 +100,7 @@ async function initializeFileTree() {
         if (!sidebar) throw new Error('No se encontró el elemento sidebar');
         
         const dirInfo = sidebar.querySelector('.directory-info');
-        dirInfo.textContent = 'I.E.S Chan Do Monte - 2º DAM - 2024/2025 | Borja Otero Ferreira';
+        dirInfo.textContent = 'I.E.S Chan Do Monte - 2º DAM - 2024/2025';
         
         const fileTree = await fetchDirectoryStructure();
         if (fileTree) {
