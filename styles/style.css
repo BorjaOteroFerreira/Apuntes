@@ -51,9 +51,10 @@ body {
     font-size: 18px;
     color: var(--text-primary);
     background-color: #1e1e1e0e;
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
+    border:none;
+    /*border: 1px solid var(--border-color);*/
     cursor: pointer;
+    border-radius: 5px;
     transition: background-color 0.3s ease;
     
 }
