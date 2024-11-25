@@ -1,0 +1,155 @@
+<br>
+<small>Tanto el contenido como la estructura de estos apuntes ha sido realizado integramente por <b>David Lopez Amenedo</b></small><br>
+<small>Esta obra está bajo una <a href="https://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional</a>.</small>
+
+
+**Simulación de Aparcamiento**
+
+**Descripción**
+
+
+Realice la simulación de la asignación de plazas (~10) en un aparcamiento público.
+Se crearán ~50 conductores (hilos de ejecución) que querrán su plaza de aparcamiento.
+Una vez un coche se aparca en una plaza, allí permanecerá un pequeño tiempo aleatorio mientras el conductor hace un recado, y luego se irá, cediendo su sitio a otro conductor.
+
+**Requisitos**
+
+
+* Visualizar en cada cambio de estado las transiciones (quién entra/sale) y el estado del aparcamiento (cómo está cada sitio)
+* Tanto conductores como aparcamientos están numerados
+* Todo debe funcionar correctamente y de manera óptima (consumo de CPU, etc.)
+
+**Código**
+
+
+### Principal.java
+```java
+public class Principal {
+    static final int NUM_COCHES = 50;
+
+    public static void main(String[] args) {
+        Aparcamiento aparcamiento = new Aparcamiento();
+        Coche[] coches = new Coche[NUM_COCHES];
+        for (int i = 0; i < coches.length; i++) {
+            coches[i] = new Coche("" + (i + 1), aparcamiento);
+            coches[i].start();
+        }
+        for (Coche coche : coches) {
+            try {
+                coche.join();
+            } catch (InterruptedException e) {
+            }
+        }
+        System.out.println("\nFin de la simulación.");
+    }
+}
+```
+
+### Plaza.java
+```java
+public class Plaza {
+    private static int contadorPlazas = 0;
+    private int numPlaza;
+    Coche cocheAparcado = null;
+
+    public Plaza() {
+        numPlaza = ++contadorPlazas;
+    }
+
+    public Coche getCoche() {
+        return cocheAparcado;
+    }
+
+    public void aparcaUnCoche(Coche coche) {
+        cocheAparcado = coche;
+        System.out.println(coche + " > " + this);
+    }
+
+    public void seVaElCoche() {
+        System.out.println(this + " libre > " + cocheAparcado);
+        cocheAparcado = null;
+    }
+
+    public boolean estaLibre() {
+        return cocheAparcado == null;
+    }
+
+    @Override
+    public String toString() {
+        return "P" + numPlaza;
+    }
+}
+```
+
+### Coche.java
+```java
+import java.util.Random;
+
+public class Coche extends Thread {
+    Aparcamiento aparcamiento;
+
+    public Coche(String nombre, Aparcamiento aparcamiento) {
+        super(nombre);
+        this.aparcamiento = aparcamiento;
+    }
+
+    @Override
+    public String toString() {
+        return "C" + getName();
+    }
+
+    @Override
+    public void run() {
+        aparcamiento.aparcar(this);
+        try {
+            sleep(new Random().nextInt(100) + 1);
+        } catch (InterruptedException ex) {
+        }
+        aparcamiento.salir(this);
+    }
+}
+```
+
+### Aparcamiento.java
+```java
+public class Aparcamiento {
+    static final int NUM_PLAZAS = 10;
+    static Plaza[] plazas;
+
+    public Aparcamiento() {
+        plazas = new Plaza[NUM_PLAZAS];
+        for (int i = 0; i < plazas.length; i++)
+            plazas[i] = new Plaza();
+    }
+
+    public synchronized void aparcar(Coche coche) {
+        Plaza plazaLibre;
+        while ((plazaLibre = getPlazaLibre()) == null) {
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+            }
+            ;
+        }
+        plazaLibre.aparcaUnCoche(coche);
+    }
+
+    public synchronized void salir(Coche coche) {
+        // podríamos evitar el bucle buscando la plaza donde está el coche
+        // si almacenáramos en el coche en qué plaza está aparcado
+        for (Plaza plaza : plazas)
+            if (plaza.getCoche() == coche) {
+                plaza.seVaElCoche();
+                break;
+            }
+        notifyAll(); // o notify(); depende de simular que arrancan todos o solo el que entra
+    }
+
+    public Plaza getPlazaLibre() {
+        for (Plaza plaza : plazas)
+            if (plaza.estaLibre())
+                return plaza;
+        return null;
+    }
+}
+```

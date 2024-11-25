@@ -1,0 +1,158 @@
+**Autoría y Licencia** ------------------------ * **Autor:** David Lopez Amenedo * **Esta obra está bajo una** [licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/)
+
+## Elecciones Municipales**
+
+**Descripción**
+
+
+Simúlese una votación en las elecciones de un municipio de **NUM_HABITANTES** (~10.000 personas), donde un **Votante** (hilo) piensa su voto durante un tiempo aleatorio no mayor a 10^-2 sg. y luego vota (aleatoriamente) a uno de los **partidos** (~5) que se presentan.
+
+**Requisitos**
+
+* Visualice al final los votos de cada partido y el total, comprobando que no hubo "abstenciones" (~ se han contabilizado bien todos los votos).
+* Visualice (a ser posible evitando ordenar previamente el array) el ganador, o si hay empate.
+
+* **MEJORAS**:
+	+ Que los partidos tengan nombres reconocibles, no Partido0, Partido1, …
+	+ Que en el caso de haber empates, se visualice los partidos empatados
+
+**Código**
+
+### Elecciones.java
+```java
+public class Elecciones {
+    static final int NUM_HABITANTES = 10000; // poner < 10 habitantes para simular empates
+    static String[] nombresPartidos = {"PP", "BNG", "PSOE", "Marea", "IndCDM"};
+
+    public static void main(String[] args) {
+        Urna urna = new Urna(nombresPartidos);
+        // Empiezan las votaciones
+        Votante[] votantes = new Votante[NUM_HABITANTES];
+        for (int i = 0; i < NUM_HABITANTES; i++) {
+            votantes[i] = new Votante(urna);
+            votantes[i].start();
+        }
+        // Esperamos a que todo el mundo acabe de votar
+        for (Votante votante : votantes)
+            try {
+                votante.join();
+            } catch (InterruptedException ex) {
+            }
+        // Mostramos los resultados
+        System.out.println(urna);
+        urna.visualizarResultados();
+    }
+}
+```
+
+### Votante.java
+```java
+public class Votante extends Thread {
+    Urna urna;
+    static final int TIEMPO_REFLEXION = 5;
+    static Random random = new Random();
+
+    public Votante(Urna urna) {
+        this.urna = urna;
+    }
+
+    @Override
+    public void run() {
+        try {
+            // Pensamos el voto...
+            Thread.sleep(random.nextInt(TIEMPO_REFLEXION));
+        } catch (InterruptedException ex) {
+        }
+        int numeroDePartido = random.nextInt(urna.getNumPartidos());
+        urna.vota(numeroDePartido);
+    }
+}
+```
+
+### Urna.java
+```java
+public class Urna {
+    Partido[] partidos;
+
+    public Urna(String[] nombresPartidos) {
+        partidos = new Partido[nombresPartidos.length];
+        int numPartido = 0;
+        for (String nombrePartido : nombresPartidos)
+            partidos[numPartido++] = new Partido(nombrePartido);
+    }
+
+    public int getNumPartidos() {
+        return partidos.length;
+    }
+
+    @Override
+    public String toString() {
+        return Arrays.toString(partidos);
+    }
+
+    public void vota(int numPartido) {
+        partidos[numPartido].vota();
+    }
+
+    public void visualizarResultados() {
+        ArrayList<Partido> ganadores = new ArrayList();
+        ganadores.add(partidos[0]);
+        int totalVotos = partidos[0].getNumVotos();
+        for (int i = 1; i < getNumPartidos(); i++) {
+            int numVotosPartidoActual = partidos[i].getNumVotos();
+            int numVotosPartidoGanador = ganadores.get(0).getNumVotos();
+            if (numVotosPartidoActual >= numVotosPartidoGanador) {
+                if (numVotosPartidoActual > numVotosPartidoGanador)
+                    ganadores.clear();
+                ganadores.add(partidos[i]);
+            }
+            totalVotos += numVotosPartidoActual;
+        }
+
+        System.out.println("\nTotal: " + totalVotos + " votos emitidos.");
+        if (ganadores.size() == 1)
+            System.out.println("Ganador: " + ganadores.get(0));
+        else
+            System.out.println("Empate: " + ganadores);
+    }
+}
+```
+
+### Partido.java
+```java
+public class Partido {
+    private final String nombre;
+    private int numVotos;
+
+    public Partido(String nombre) {
+        this.nombre = nombre;
+        this.numVotos = 0;
+    }
+
+    public int getNumVotos() {
+        return numVotos;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " (" + numVotos + ")";
+    }
+
+    public synchronized void vota() {
+        this.numVotos++;
+    }
+}
+```
+
+**Posibles Ejecuciones**
+
+
+* `[PP (1979), BNG (2027), PSOE (1961), Marea (1985), IndCDM (2048)]`
+	+ Total: 10000 votos emitidos.
+	+ Ganador: IndCDM (2048)
+* `[PP (1998), BNG (2088), PSOE (1966), Marea (1968), IndCDM (1980)]`
+	+ Total: 10000 votos emitidos.
+	+ Ganador: BNG (2088)
+* `[PP (1), BNG (3), PSOE (2), Marea (1), IndCDM (3)]`
+	+ Total: 10 votos emitidos.
+	+ Empate: `[BNG (3), IndCDM (3)]`

@@ -1,0 +1,117 @@
+¡Claro! Aquí te dejo el contenido pasado a Markdown:
+
+**Conversación**
+
+
+**Descripción**
+
+
+Realice una aplicación con dos hilos que visualicen un diálogo según la conversación almacenada en un archivo de texto. En dicho archivo, se almacenan en líneas (alternativamente) cada una de las frases (las impares son de un hilo y las pares de otro). Debido a que necesitan un tiempo para pensar la siguiente frase que van a decir, la simulación implementará una espera de tiempo aleatoria antes de visualizar la siguiente frase.
+
+**Requisitos**
+
+
+* La conversación finalizará al acabarse las líneas de texto almacenadas en el archivo.
+* La ejecución de los hilos involucrados finalizará al acabarse la conversación.
+* Ejemplos de conversaciones: dos enamorados, dos pescadores, etc.
+
+**Código**
+
+
+### Pescador.java
+```java
+import java.io.FileNotFoundException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+class Pescador extends Thread {
+    Archivo archivo;
+    long retraso;
+
+    public Pescador(String nombre, long retraso, Archivo archivo) {
+        super(nombre);
+        this.retraso = retraso;
+        this.archivo = archivo;
+    }
+
+    @Override
+    public void run() {
+        try {
+            Thread.sleep(retraso);
+        } catch (InterruptedException ex) {
+        }
+        String linea = archivo.getLinea();
+        while (linea!= null) {
+            System.out.println(getName() + ": " + linea);
+            try {
+                Thread.sleep(retraso);
+            } catch (InterruptedException ex) {
+            }
+            linea = archivo.getLinea();
+        }
+    }
+
+    public static void main(String[] args) {
+        String rutaArchivo = "c:/conversacion.txt";
+        Archivo archivo = null;
+        try {
+            archivo = new Archivo(rutaArchivo);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Archivo no encontrado.");
+        }
+        (new Pescador("JORGE", 1, archivo)).start();
+        (new Pescador("FRAN", 3000, archivo)).start();
+    }
+}
+```
+
+### Archivo.java
+```java
+class Archivo {
+    BufferedReader archivo;
+
+    public Archivo(String ruta) throws FileNotFoundException {
+        archivo = new BufferedReader(new FileReader(ruta));
+    }
+
+    public synchronized String getLinea() {
+        notify();
+        String linea;
+        try {
+            if ((linea = archivo.readLine())!= null) {
+                try {
+                    wait();
+                } catch (InterruptedException ex) {
+                }
+                return linea;
+            }
+        } catch (IOException ex) {
+        }
+        return null;
+    }
+}
+```
+
+**Ejemplo de Archivo de Conversación**
+
+
+* **c:/conversacion.txt**
+```
+Yo te quiero mucho
+Yo te quiero más
+Yo te amo hasta la luna
+Yo te amo hasta las estrellas
+...
+```
+
+**Autoría y Licencia**
+
+<small>
+  * **Autor:** <b>David Lopez Amenedo</b>
+  * **Esta obra está bajo una** [licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/)
+</small>
+<br>
+<small>
+  * **IES Chan do Monte – DAM2 – PSP** [david@edu.xunta.gal](mailto:david@edu.xunta.gal)
+</small>

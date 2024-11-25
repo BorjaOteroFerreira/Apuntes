@@ -1,0 +1,139 @@
+
+**Llega el Jefe**
+
+
+**Descripción**
+
+En una oficina, los empleados (hilos) van llegando a la oficina y se ponen a trabajar… pero solo si ya ha llegado el jefe (el otro hilo), porque en caso contrario se ponen a dormir.
+En cuanto llega el jefe, inmediatamente se ponen a trabajar sin que éste se de cuenta.
+
+**Simulación**
+
+
+### LlegaElJefe.java
+```java
+import java.util.Random;
+
+public class LlegaElJefe {
+    public static void main(String[] args) {
+        int NUM_EMPLEADOS = 3;
+        int cuandoLlegaElJefe = new Random().nextInt(NUM_EMPLEADOS + 1);
+        Oficina oficina = new Oficina();
+        for (int i = 0; i <= NUM_EMPLEADOS; i++) {
+            if (cuandoLlegaElJefe == i)
+                new Jefe("JEFE", oficina).start();
+            else
+                new Empleado("Empleado " + ((i < cuandoLlegaElJefe)? i : i - 1), oficina).start();
+        }
+    }
+}
+```
+
+**Posibles Salidas**
+
+
+* **Empleado 0**: he llegado. ZZZZZ
+* **Empleado 1**: he llegado. ZZZZZ
+* **JEFE**: EL JEFE HA LLEGADO
+* **Empleado 1**: Ehhh, A TRABAJAR!
+* **Empleado 0**: Ehhh, A TRABAJAR!
+* **Empleado 2**: he llegado. Hola jefe, me pongo a trabajar
+
+* **Empleado 0**: he llegado. ZZZZZ
+* **Empleado 1**: he llegado. ZZZZZ
+* **Empleado 2**: he llegado. ZZZZZ
+* **JEFE**: EL JEFE HA LLEGADO
+* **Empleado 2**: Ehhh, A TRABAJAR!
+* **Empleado 1**: Ehhh, A TRABAJAR!
+* **Empleado 0**: Ehhh, A TRABAJAR!
+
+* **JEFE**: EL JEFE HA LLEGADO
+* **Empleado 0**: he llegado. Hola jefe, me pongo a trabajar
+* **Empleado 1**: he llegado. Hola jefe, me pongo a trabajar
+* **Empleado 2**: he llegado. Hola jefe, me pongo a trabajar
+
+**Código**
+---------
+
+### Personal.java
+```java
+public abstract class Personal extends Thread {
+    Oficina oficina;
+
+    public Personal(String nombre, Oficina oficina) {
+        super(nombre);
+        this.oficina = oficina;
+    }
+
+    abstract public void aTrabajar();
+
+    public void run() {
+        aTrabajar();
+    }
+}
+```
+
+### Jefe.java
+```java
+class Jefe extends Personal {
+
+    public Jefe(String nombre, Oficina oficina) {
+        super(nombre, oficina);
+    }
+
+    public void aTrabajar() {
+        oficina.saludoJefe(getName());
+    }
+}
+```
+
+### Empleado.java
+```java
+class Empleado extends Personal {
+
+    public Empleado(String nombre, Oficina oficina) {
+        super(nombre, oficina);
+    }
+
+    public void aTrabajar() {
+        oficina.saludoEmpleado(getName());
+    }
+}
+```
+
+### Oficina.java
+```java
+public class Oficina {
+    private boolean estaElJefe = false;
+
+    public synchronized void saludoEmpleado(String nombre) {
+        System.out.print(nombre + ": he llegado.");
+        if (!estaElJefe) {
+            System.out.println(" ZZZZZ");
+            try {
+                wait();
+            } catch (InterruptedException ex) {
+            }
+            System.out.println(nombre + " Ehhh, A TRABAJAR!");
+        } else
+            System.out.println(nombre + ": Hola jefe, me pongo a trabajar");
+    }
+
+    public synchronized void saludoJefe(String nombre) {
+        System.out.println(nombre + ": El jefe ha llegado");
+        estaElJefe = true;
+        notifyAll();
+    }
+}
+```
+
+**Autoría y Licencia**
+
+<small>
+  * **Autor:** <b>David Lopez Amenedo</b>
+  * **Esta obra está bajo una** [licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/)
+</small>
+<br>
+<small>
+  * **IES Chan do Monte – DAM2 – PSP** [david@edu.xunta.gal](mailto:david@edu.xunta.gal)
+</small>
