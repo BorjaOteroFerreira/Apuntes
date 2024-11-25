@@ -1,4 +1,6 @@
-¡Claro! Aquí te dejo el contenido pasado a Markdown:
+<br>
+<small>Tanto el contenido como la estructura de estos apuntes ha sido realizado integramente por <b>David Lopez Amenedo</b></small><br>
+<small>Esta obra está bajo una <a href="https://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional</a>.</small>
 
 **Conversación**
 

@@ -1,4 +1,6 @@
-**Autoría y Licencia** ------------------------ * **Autor:** David Lopez Amenedo * **Esta obra está bajo una** [licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/)
+<br>
+<small>Tanto el contenido como la estructura de estos apuntes ha sido realizado integramente por <b>David Lopez Amenedo</b></small><br>
+<small>Esta obra está bajo una <a href="https://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional</a>.</small>
 
 ## Elecciones Municipales**
 

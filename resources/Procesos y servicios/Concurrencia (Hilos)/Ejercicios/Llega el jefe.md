@@ -1,3 +1,7 @@
+<br>
+<small>Tanto el contenido como la estructura de estos apuntes ha sido realizado integramente por <b>David Lopez Amenedo</b></small><br>
+<small>Esta obra está bajo una <a href="https://creativecommons.org/licenses/by-sa/4.0/">licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional</a>.</small>
+
 
 **Llega el Jefe**
 
@@ -126,14 +130,3 @@ public class Oficina {
     }
 }
 ```
-
-**Autoría y Licencia**
-
-<small>
-  * **Autor:** <b>David Lopez Amenedo</b>
-  * **Esta obra está bajo una** [licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional](https://creativecommons.org/licenses/by-sa/4.0/)
-</small>
-<br>
-<small>
-  * **IES Chan do Monte – DAM2 – PSP** [david@edu.xunta.gal](mailto:david@edu.xunta.gal)
-</small>
