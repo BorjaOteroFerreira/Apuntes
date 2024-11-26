@@ -5,21 +5,16 @@ async function fetchDirectoryStructure(path = '') {
         const username = 'BorjaOteroFerreira';
         const repo = 'Apuntes';
         const branch = 'main';
-        
         const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/resources${path}`;
-        console.log(`Fetching: ${apiUrl}`); // Debug
-        
+        console.log(`Fetching: ${apiUrl}`); // Debug        
         const response = await fetch(apiUrl, {
             headers: {
                 'Accept': 'application/vnd.github.v3+json'
             }
         });
-        
         if (!response.ok) throw new Error(`Error al obtener contenido del repositorio: ${response.statusText}`);
-        
         const items = await response.json();
         const structure = {};
-        
         for (const item of items) {
             if (item.type === 'dir') {
                 structure[item.name] = await fetchDirectoryStructure(`${path}/${item.name}`);
@@ -31,7 +26,6 @@ async function fetchDirectoryStructure(path = '') {
                 structure.podcast.push(item.name);
             }
         }
-        
         return structure;
     } catch (error) {
         console.error('Error al obtener la estructura del directorio:', error);
@@ -89,7 +83,6 @@ function simulateConsoleOutput(codeBlock) {
             }, 1000);
         }
     }
-
     writeLine();
 }
 
@@ -167,14 +160,11 @@ function createTreeView(tree, parentElement, path = '') {
                 children.appendChild(fileItem);
             });
         }
-
         // Procesar subcarpetas recursivamente
         createTreeView(value, children, `${path}/${key}`);
-
         if (children.children.length > 0) {
             item.appendChild(children);
         }
-
         parentElement.appendChild(item);
     }
 }
@@ -183,21 +173,16 @@ function createTreeView(tree, parentElement, path = '') {
 async function loadMarkdownContent(filePath) {
     const content = document.getElementById('content');
     content.innerHTML = '<div class="loading">Cargando contenido...</div>';
-
     try {
         const username = 'BorjaOteroFerreira';
         const repo = 'Apuntes';
         const branch = 'main';
-        
         const rawUrl = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/resources${filePath}`;
         console.log(`Loading Markdown: ${rawUrl}`); // Debug
-        
         const response = await fetch(rawUrl);
         if (!response.ok) throw new Error('No se pudo cargar el archivo');
-        
         const text = await response.text();
         const htmlContent = marked.parse(text);
-        
         content.innerHTML = htmlContent;
         Prism.highlightAllUnder(content);
         const codeBlocks = content.querySelectorAll('pre > code.language-bash, pre > code:not([class])');
@@ -212,15 +197,12 @@ async function setupAudioPlayer(audioPath) {
     const playerContainer = document.getElementById('audio-player-container');
     const audioTitle = document.getElementById('audio-title');
     const audioPlayer = document.getElementById('audio-player');
-
     try {
         const username = 'BorjaOteroFerreira';
         const repo = 'Apuntes';
         const branch = 'main';
-        
         const audioUrl = `https://raw.githubusercontent.com/${username}/${repo}/${branch}/resources${audioPath}`;
         console.log(`Setting up audio: ${audioUrl}`); // Debug
-        
         audioTitle.textContent = "Formato Podcast";
         audioPlayer.src = audioUrl;
         playerContainer.style.display = 'block';
@@ -240,8 +222,6 @@ function showError(message) {
 
 // Inicializar cuando el documento esté listo
 document.addEventListener('DOMContentLoaded', initializeFileTree);
-
-
 function showError(message) {
     const sidebar = document.getElementById('sidebar');
     const error = document.createElement('div');
@@ -249,5 +229,4 @@ function showError(message) {
     error.textContent = message;
     sidebar.appendChild(error);
 }
-
 document.addEventListener('DOMContentLoaded', initializeFileTree);
