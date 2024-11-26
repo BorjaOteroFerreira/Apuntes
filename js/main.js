@@ -38,10 +38,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebar = document.getElementById('sidebar');
     const content = document.getElementById('content');
     let sidebarVisible = true;
-
     toggleSidebarButton.addEventListener('click', () => {
         sidebarVisible = !sidebarVisible;
-
         if (sidebarVisible) {
             // Mostrar sidebar
             sidebar.classList.remove('hidden');
