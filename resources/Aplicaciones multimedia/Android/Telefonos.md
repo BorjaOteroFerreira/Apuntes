@@ -388,6 +388,8 @@ public interface onTelefonoAction {
 
 ## OnTelefonoFragmentoListener.java
 
+**Se implementa en el mainActivity y se crea una variable de clase en el fragmento para pasarle el telefono  al fragmento cuadno lo creas**
+
 ```java
 package com.example.fragmentotelefonos;
 
