@@ -1,6 +1,6 @@
 ## ResultLauncher para obtener resultado de otra activity
 
-**ACTIVIDAD 1**
+**Activity 1**
 
 ```java
 //A nivel de clase 
@@ -13,7 +13,7 @@ resultLauncher = registerForActivityResult(
         );
 ```
 
-**ACTIVIDAD 2**
+**Activity 2**
 
 ***Se setea el resultado con el tipo deseado antes de cerrar la activdad que devuelve el resultado***
 
