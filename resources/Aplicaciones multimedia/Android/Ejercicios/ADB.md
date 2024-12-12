@@ -2,25 +2,25 @@
 
 ***Listamos los dispositivos disponibles***
 
-```bash 
+```batch 
 adb devices 
 ``` 
 ***Conecta con una shell al dispositivo***
 
-```bash
+```batch
 adb -s <deivce_name> shell
 ```
 
 ***Cambia a su y nos movemos a la carpeta donde se encuentra la bd***
 
-```bash
+```batch
 su
 cd data/data/paqueteDeTuAplicacion/databases/nombreBD.bd
 ``` 
 
 ***Abre la bd con sqlite3***
 
-```bash
+```batch
 sqlite3 nombreBD.bd
 ```
 ***Realiza consultas a la bd***
