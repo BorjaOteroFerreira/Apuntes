@@ -373,6 +373,9 @@ public class Telefono implements onTelefonoAction {
 
 ## OnTelefonoAction.java
 
+**Escucha acciones del fragmento**
+
+***Se implementa en el Telefono (modelo)  y se añade como variable de clase al fragmento para realizar el aviso a traves de la variable***
 ```java 
 package com.example.fragmentotelefonos;
 
@@ -395,7 +398,9 @@ public interface onTelefonoFragmentListener {
 ```
 
 ## onTelefonoListener.java
+
 **Escucha acciones del Telefono (modelo)**
+
 ***Se implementa en el fragmento y se añade como variable de clase al modelo para realizar el aviso a traves de la variable***
 
 ```java
