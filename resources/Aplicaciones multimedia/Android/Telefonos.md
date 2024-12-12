@@ -385,14 +385,14 @@ public interface onTelefonoFragmentListener {
 ```
 
 ## onTelefonoListener.java
+**Escucha acciones del Telefono (modelo)**
+***Se implementa en el fragmento y se añade como variable de clase al modelo para realizar el aviso a traves de la variable***
 
 ```java
-
 package com.example.fragmentotelefonos;
 
 public interface onTelefonoListener {
     void recibirLlamada(String telefonoOrigen);
     void colgarIn();
 }
-
 ```
