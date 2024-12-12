@@ -12,7 +12,7 @@ import java.util.ArrayList;
 public class  AsistenteBD extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "telefonos.db";
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 1;
     private static AsistenteBD instance;
 
     private AsistenteBD(Context context) {
@@ -31,6 +31,16 @@ public class  AsistenteBD extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE telefonos (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, telefono TEXT)");
         db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Juan', '11')");
         db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Pedro', '22')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Mariano', '33')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Maria', '44')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Pepe', '55')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Pepa', '66')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Juancho', '77')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Pedrosa', '88')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Juanito', '99')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Pedrito', '1010')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Juanito', '1111')");
+        db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Pedrito', '1212')");
     }
 
     @Override
@@ -39,16 +49,16 @@ public class  AsistenteBD extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE telefonos (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre TEXT, telefono TEXT)");
         db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Juan', '11')");
         db.execSQL("INSERT INTO telefonos (nombre, telefono) VALUES ('Pedro', '22')");
+
     }
 
     public ArrayList<Telefono> obtenerTelefonos(SQLiteDatabase db) {
         ArrayList<Telefono> listaTelefonos = new ArrayList<>();
         Cursor cursor = db.rawQuery("SELECT nombre, telefono FROM telefonos", null);
-        if (cursor!= null && cursor.moveToFirst()) {
+        if (cursor != null && cursor.moveToFirst()) {
             do {
-                String nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
                 String telefono = cursor.getString(cursor.getColumnIndexOrThrow("telefono"));
-                listaTelefonos.add(new Telefono(nombre, telefono));
+                listaTelefonos.add(new Telefono(telefono));
             } while (cursor.moveToNext());
             cursor.close();
         }
@@ -74,10 +84,9 @@ import androidx.fragment.app.FragmentContainerView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements onTelefonoFragmentListener {
     LinearLayout linearLayout;
     AsistenteBD asistenteBD;
-    onTelefonoFragmentListener telefonoListener;
     ArrayList<Telefono> telefonos = new ArrayList<>();
 
 
@@ -95,15 +104,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         linearLayout = findViewById(R.id.fragment_container);
-        telefonoListener = new onTelefonoFragmentListener() {
-            @Override
-            public Telefono obtenerTelefono(String numTelefono) {
-                Telefono tel = new Telefono(numTelefono);
-                int idx = telefonos.indexOf(tel);
-                tel = telefonos.get(idx);
-                return tel;
-            }
-        };
+
         telefonos = asistenteBD.obtenerTelefonos(asistenteBD.getReadableDatabase());
         int num_telefonos = telefonos.size();
         Operadora operadora = new Operadora(telefonos);
@@ -114,10 +115,19 @@ public class MainActivity extends AppCompatActivity {
             Telefono tel = telefonos.get(i);
             tel.setOperadora(operadora);
             tel.setListener(fragment);
-            fragment.setListener(telefonoListener , tel.getTelefono());
+            fragment.setListener(this , tel.getTelefono());
             getSupportFragmentManager().beginTransaction().add(container.getId(), fragment).commit();
             linearLayout.addView(container);
         }
+    }
+
+    @Override
+    public Telefono obtenerTelefono(String numTelefono) {
+        Telefono tel = new Telefono(numTelefono);
+        int idx = telefonos.indexOf(tel);
+        tel = telefonos.get(idx);
+        return tel;
+
     }
 }
 ```
