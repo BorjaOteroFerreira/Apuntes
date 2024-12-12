@@ -413,3 +413,178 @@ public interface onTelefonoListener {
     void colgarIn();
 }
 ```
+
+
+
+# VISTAS 
+
+## fragmento_telfono.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+        
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="68dp"
+            android:layout_height="81dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/inputLayout"
+            app:layout_constraintHorizontal_bias="0.695"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/numero_destino"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnLlamar"
+            app:layout_constraintStart_toEndOf="@id/textView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDestino"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toStartOf="@+id/btnLlamar" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/btnColgar"
+            android:layout_width="65dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@android:drawable/sym_call_incoming"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnLlamar"
+            android:layout_width="68dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@android:drawable/sym_call_outgoing"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnColgar"
+            app:layout_constraintStart_toEndOf="@id/inputLayout"
+            app:layout_constraintVertical_bias="0.5"
+
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+
+```
+
+## activity_main.xml
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginStart="5dp"
+    android:layout_marginEnd="5dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="12dp"
+    app:cardCornerRadius="15dp"
+    app:cardElevation="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp">
+        
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="68dp"
+            android:layout_height="81dp"
+            android:gravity="center"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="@android:color/holo_blue_dark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/inputLayout"
+            app:layout_constraintHorizontal_bias="0.695"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inputLayout"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:hint="@string/numero_destino"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btnLlamar"
+            app:layout_constraintStart_toEndOf="@id/textView"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDestino"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:inputType="text"
+                app:layout_constraintEnd_toStartOf="@+id/btnLlamar" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageButton
+            android:id="@+id/btnColgar"
+            android:layout_width="65dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="4dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@android:drawable/sym_call_incoming"
+            app:layout_constraintVertical_bias="0.5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnLlamar"
+            android:layout_width="68dp"
+            android:layout_height="0dp"
+            android:backgroundTint="@android:color/transparent"
+            android:src="@android:drawable/sym_call_outgoing"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btnColgar"
+            app:layout_constraintStart_toEndOf="@id/inputLayout"
+            app:layout_constraintVertical_bias="0.5"
+
+            tools:ignore="MissingConstraints" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
+```
