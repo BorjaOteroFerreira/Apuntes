@@ -27,7 +27,7 @@ def translate_strings_xml(input_file, target_languages, output_dir):
                 original_text = string_element.text
                 translated_text = translate_text(original_text, translator)
                 # Crear el elemento traducido
-                
+
                 new_string_element = SubElement(new_root, "string", attrib={"name": name})
                 new_string_element.text = translated_text
 
@@ -38,7 +38,7 @@ def translate_strings_xml(input_file, target_languages, output_dir):
 
 # Configuración
 input_file = "G:\\AndroidStudioProjects\\proyecto\\app\\src\\main\\res\\values\\strings.xml"
-target_languages = ["en", "fr", "gl", "it"]  # Idiomas destino (español, francés, alemán, italiano)
+target_languages = ["en", "fr", "gl", "it"]  # Idiomas destino (ingles, francés, alemán, italiano)
 output_dir = "G:\\AndroidStudioProjects\\proyecto\\app\\src\\main\\res\\values"  # Directorio de salida
 
 # Crear el directorio de salida si no existe
