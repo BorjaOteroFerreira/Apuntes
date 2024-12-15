@@ -3,16 +3,37 @@
 * [AUDITORYCUES](#auditorycues)
 * [BUTTON](#button)
 * [BUTTONUI](#buttonui)
-
 * [INTERNALFRAME](#internalframe)
 * [INTERNALFRAMETITLEPANE](#internalframetitlepane)
 * [INTERNALFRAMEUI](#internalframeui)
-
 * [TREE](#tree)
 * [TREEUI](#treeui)
+* [MENU](#menu)
+* [MENUBAR](#menubar)
+* [MENUITEM](#menuitem)
+* [LABEL](#label)
+* [LABELUI](#labelui)
+* [LIST](#list)
+* [LISTUI](#listui)
+* [OPTIONPANE](#optionpane)
+* [PANEL](#panel)
+* [PASSWORDFIELD](#passwordfield)
+* [POPUPMENU](#popupmenu)
+* [PROGRESSBAR](#progressbar)
+* [RADIOBUTTON](#radiobutton)
+* [SCROLLBAR](#scrollbar)
+* [SCROLLPANE](#scrollpane)
+* [SEPARATOR](#separator)
+* [SLIDER](#slider)
+* [SPINNER](#spinner)
+* [SPLITPANE](#splitpane)
+* [TABBEDPANE](#tabbedpane)
+* [TABLE](#table)
+* [TEXTAREA](#textarea)
+* [TEXTFIELD](#textfield)
+* [TOOLTIP](#tooltip)
 * [VIEWPORT](#viewport)
 * [VIEWPORTUI](#viewportui)
-
 
 
 ### **AUDITORYCUES**
@@ -273,4 +294,41 @@
 | **Propiedad** | **Descripción** |
 | --- | --- |
 | `InternalFrameUI` | Clase de interfaz de usuario para el marco interno (MetalInternalFrameUI) |
+
+**Continuando con el resto de las secciones**
+
+### **LABEL**
+| **Propiedad** | **Descripción** |
+| --- | --- |
+| `foreground` | Color de primer plano para el texto del etiqueta |
+| `disabledForeground` | Color de primer plano deshabilitado para el texto del etiqueta |
+| `background` | Color de fondo para el etiqueta |
+| `disabledShadow` | Color de sombra deshabilitado para el texto del etiqueta |
+| `font` | Fuente para el texto del etiqueta |
+
+### **LABELUI**
+| **Propiedad** | **Descripción** |
+| --- | --- |
+| `LabelUI` | Clase de interfaz de usuario para el etiqueta (MetalLabelUI) |
+
+### **LIST**
+| **Propiedad** | **Descripción** |
+| --- | --- |
+| `dropLineColor` | Color de la línea de soltar para la lista |
+| `font` | Fuente para el texto de la lista |
+| `foreground` | Color de primer plano para el texto de la lista |
+| `timeFactor` | Factor de tiempo para la lista |
+| `background` | Color de fondo para la lista |
+| `selectionForeground` | Color de primer plano para la selección en la lista |
+| `focusCellHighlightBorder` | Borde de resaltado para la celda de foco en la lista |
+| `cellRenderer` | Renderizador de celdas para la lista |
+| `noFocusBorder` | Borde sin foco para la lista |
+| `selectionBackground` | Color de fondo para la selección en la lista |
+| `focusInputMap` | Mapa de entrada para el foco en la lista |
+| `dropCellBackground` | Color de fondo para la celda de soltar en la lista |
+
+### **LISTUI**
+| **Propiedad** | **Descripción** |
+| --- | --- |
+| `ListUI` | Clase de interfaz de usuario para la lista (BasicListUI) |
 
