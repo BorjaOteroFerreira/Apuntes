@@ -4,8 +4,8 @@
 * [BUTTON](#button)
 * [BUTTONUI](#buttonui)
 
-* [INTERNALFRAME](#internalfame)
-* [INTERNALFRAMETITLEPANE](#internalfametitlepane)
+* [INTERNALFRAME](#internalframe)
+* [INTERNALFRAMETITLEPANE](#internalframetitlepane)
 * [INTERNALFRAMEUI](#internalframeui)
 
 * [TREE](#tree)
