@@ -3,11 +3,11 @@
 * [AUDITORYCUES](#auditorycues)
 * [BUTTON](#button)
 * [BUTTONUI](#buttonui)
-*...
+
 * [INTERNALFRAME](#internalfame)
 * [INTERNALFRAMETITLEPANE](#internalfametitlepane)
 * [INTERNALFRAMEUI](#internalframeui)
-*...
+
 * [TREE](#tree)
 * [TREEUI](#treeui)
 * [VIEWPORT](#viewport)
