@@ -2273,7 +2273,7 @@ try {
 }
 entrada.close();
 ```
-```java
+
 Unidad 1: Gestión de ficheros  
 ### 9.6 Seria lización de objetos compuestos
 
