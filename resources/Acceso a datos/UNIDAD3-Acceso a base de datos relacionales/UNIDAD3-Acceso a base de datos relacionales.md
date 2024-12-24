@@ -47,7 +47,7 @@ Existen varias aproximacións para interactuar cunha base de datos dende un prog
 
 Necesítase un precompilador que prové o vendedor do SGBD (en Oracle, por exemplo: Prol*C) que traduce as sentenzas SQL converténdoas en chamadas a unhas librerías específicas, polo tanto, é dependente dun SXBD relacional en particular.
 
-![imagen_2_1.png](images/imagen_2_1.png)
+![imagen_2_1.png](https://username.github.io/repo-name/images/imagen_2_1.png)
 
 Exemplo do proceso de compilación dun programa con sentenzas SQL embebidas na linguaxe C
 
