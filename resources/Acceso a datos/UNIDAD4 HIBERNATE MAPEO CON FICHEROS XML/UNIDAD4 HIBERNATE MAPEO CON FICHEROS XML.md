@@ -61,7 +61,7 @@ Hibernate traballa con estas clases, sempre e cando sexan POJOS (Plain Old Java 
 * Métodos getter e setter para cada atributo.
 * Implementar a interface Serializable. Non é obrigatorio implementar esta interface, pero si recomendable.
 
-![imagen_2_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_2_1.png)
+![imagen_2_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_2_1.png)
 
 Exemplo simple de POJO:
 
@@ -79,9 +79,9 @@ Para cada clase que se queira facer persistente (por exemplo, a clase Persoa) na
 
 Exemplo simple de ficheiro Persoa.hbm.xml, que realiza o mapeo á táboa Persoa almacenada no SXBD SQL Server :
 
-![imagen_3_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_3_1.png)
+![imagen_3_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_3_1.png)
 
-![imagen_3_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_3_2.png)
+![imagen_3_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_3_2.png)
 
 
 # Unidad 4: HIBERNATE-Herramienta ORM
@@ -92,13 +92,13 @@ Exemplo simple de ficheiro Persoa.hbm.xml, que realiza o mapeo á táboa Persoa 
 
 Todos los mapeos XML deben declarar el tipo de documento DTD.
 
-![imagen_4_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_4_1.png)
+![imagen_4_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_4_1.png)
 
 ### Mapeo de Hibernate: <Hibernate-mapping>
 
 Él es el elemento raíz que contiene todos los elementos <class>. Dentro de él se declaran las clases de objetos persistentes.
 
-![imagen_4_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_4_2.png)
+![imagen_4_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_4_2.png)
 
 ### Atributos del elemento hibernate-mapping
 
@@ -114,7 +114,7 @@ Todos los mapeos XML deben declarar el tipo de documento DTD.
 
 El elemento class declara una clase persistente que se va almacenar en la base de datos, sus atributos y su relación con la tabla de la base de datos.
 
-![imagen_5_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_5_1.png)
+![imagen_5_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_5_1.png)
 
 ### Atributos de la clase
 
@@ -157,7 +157,7 @@ Un uso común para isto sería cando queres traballar con un subconxunto dos dat
 
 As clases mapeadas teñen que declarar a columna de clave primaria da táboa da base de datos.
 
-![imagen_7_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_7_1.png)
+![imagen_7_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_7_1.png)
 
 Hibernate necesita coñecer cal é a estratexia elixida para a xeración de claves primarias. Moitas bases de datos usan claves primarias naturais, claves que teñen un significado no mundo real (CIF, NSS, ...). Nalgúns casos as claves naturais están compostas de varias columnas, o que fai o mantemento, consultas e a evolución do sistema máis difícil.  Unha recomendación é utilizar claves artificiais (ou suplentes), que non teñen significado para a aplicación e que son xeradas automaticamente polo sistema, e definir restricións de unicidade nas claves naturais.
 
@@ -165,7 +165,7 @@ Hibernate necesita coñecer cal é a estratexia elixida para a xeración de clav
 
 O elemento que define o mapeo da columna de clave primaria é a etiqueta <id>. Sintaxe:
 
-![imagen_7_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_7_2.png)
+![imagen_7_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_7_2.png)
 
 - name (opcional): Nome do atributo da clase persistente que vai ser un identificador. Si se omite name, asúmese que a clase non ten propiedade identificadora.
 - type (opcional): Nome que indica o tipo de datos de Hibernate.
@@ -190,7 +190,7 @@ Hibernate ten implementada varias formas de xerar a clave primaria, pero non tod
 
 Define claves compostas por varios campos. Hai varias alternativas para definir un identificador composto e a máis recomendada é a de implementalo como unha clase compoñente aparte.
 
-![imagen_8_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_8_1.png)
+![imagen_8_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_8_1.png)
 
 - name (obrigatorio para esta alternativa): Nome da propiedade que contén o identificador composto.
 - class (opcional): A forma de implementar unha clave composta en Hibernate é a través dunha clase. Esta propiedade indica o nome da devandita clase que conterá atributos para cada unha das columnas que compoñen a clave.
@@ -201,11 +201,11 @@ Define claves compostas por varios campos. Hai varias alternativas para definir 
 
 O elemento <property> declara unha propiedade dunha clase persistente, estilo JavaBean da clase.
 
-![imagen_9_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_9_3.png)
+![imagen_9_3.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_9_3.png)
 
 Algúns dos seus atributos son:
 
-![imagen_9_4.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_9_4.png)
+![imagen_9_4.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_9_4.png)
 
 Espero que esto te sea útil. ¡Si tienes alguna pregunta o necesitas más ayuda, no dudes en preguntar!
 
@@ -230,7 +230,7 @@ El mapeo implica la conversión entre tipos de datos de JAVA y tipos de datos SQ
 
 Mediante el “dialecto SQL” del SXBD, Hibernate adaptará sus tipos de datos nativos a los tipos de datos SQL. Así consíguese independencia frente a un SXBD específico. También se pueden usar tipos Java, o incluso no indicados, pero es menos convincente.
 
-![imagen_10_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_10_1.png)
+![imagen_10_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_10_1.png)
 
 ### Estrategias en el mapeo
 
@@ -254,7 +254,7 @@ Hibernate ofrece distintas formas para almacenar colecciónes. Cuando Hibernate 
 
 Hibernate soporta las colecciónes que se amosan en la siguiente tabla:
 
-![imagen_12_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_12_1.png)
+![imagen_12_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_12_1.png)
 
 Los arrays están soportados por Hibernate con `<primitive-array>` (para tipos primitivos Java) y `<array>` (para otros) pero úsanse raramente.
 
@@ -278,7 +278,7 @@ private <Interface> nombreColeccion = new <Implementación>();
 
 Ejemplo:
 
-![imagen_13_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_13_1.png)
+![imagen_13_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_13_1.png)
 
 Las colecciones pueden contener: tipos básicos, entidades y compoñentes. No se pueden crear colecciones de colecciones.
 
@@ -286,7 +286,7 @@ Las colecciones pueden contener: tipos básicos, entidades y compoñentes. No se
 
 La mayoría de los elementos de colección comparten atributos que se muestran a continuación:
 
-![imagen_13_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_13_2.png)
+![imagen_13_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_13_2.png)
 
 - name: Nombre de la propiedad colección.
 - table: Nombre de la tabla de la base de datos que contiene la relación.
@@ -309,7 +309,7 @@ Unidad 4: HIBERNATE-Herramienta ORM
 
 Indica la clave foránea de la tabla referenciada. Sus atributos son:
 
-![imagen_14_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_14_1.png)
+![imagen_14_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_14_1.png)
 
 - column: Nombre de la columna de la clave foránea.
 - on-delete (opcional - por defecto es no action): Con el valor true se especifica que la restricción de clave foránea tiene el borrado en “cascade” activado a nivel de base de datos.
@@ -335,28 +335,28 @@ Una colección de entidades Set se mapea con el elemento <set>. Esta colección 
 
 Ejemplo:
 
-![imagen_15_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_15_1.png)
+![imagen_15_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_15_1.png)
 
 El diagrama de clases UML es:
 
-![imagen_15_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_15_2.png)
+![imagen_15_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_15_2.png)
 
 Las relaciones entre clase, en la programación OO, se representan mediante referencias a objetos y colecciones de referencias a objetos. A través de estas referencias, podemos navegar desde un objeto a otro. En este ejemplo, estamos utilizando direccionalidad en los dos sentidos, porque ambas clases tienen referencia una con la otra.
 
 Como un departamento puede controlar de 0 a N proyectos, para representar esta relación tenemos que engadir en la clase Departamento, una referencia mediante una colección a la clase Proyecto. Para realizar esta referencia, podemos utilizar una colección Set, ya que en este caso no puede haber elementos repetidos y sin orden establecida.
 
-![imagen_15_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_15_3.png)
+![imagen_15_3.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_15_3.png)
 
 
 # Unidad 4: HIBERNATE-Herramienta ORM
 
-![imagen_16_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_16_1.png)
+![imagen_16_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_16_1.png)
 
 Las instancias de una colección son diferenciadas en la base de datos mediante una clave foránea del objeto relacional al que pertenece. Esta clave se denomina clave de la colección. Esta clave será mapeada con el tag `<key>`.
 
 - En el archivo de mapeo Departamento.hbm.xml tenemos que mapear la colección set.
 
-![imagen_16_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_16_2.png)
+![imagen_16_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_16_2.png)
 
 ## 2.3.5 Mapeo de una lista
 
@@ -399,7 +399,7 @@ Una colección `Map` se mapea con la etiqueta `<map>`. Para definir la columna q
 
 Supongamos que ahora, las imágenes de un producto tienen un índice no numérico, mediante una cadena: “Imagen1”, “Imagen2”, etc..., y también se guarda el nombre del archivo asociado a la imagen. Una forma de modelar esto es con un map que tiene el nombre de la imagen como la clave y el nombre del archivo como el valor.
 
-![imagen_18_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_18_1.png)
+![imagen_18_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_18_1.png)
 
 Mapeo del map en el archivo de mapeo `Produto.hbm.xml` que corresponde al mapeo de la propiedad `imágenes` de la clase `producto`.
 
@@ -495,7 +495,7 @@ Espero que esto sea lo que estabas buscando. ¡Si tienes alguna pregunta o neces
 
 Unidad 4: HIBERNATE-Herramienta ORM
 
-![imagen_22_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_22_1.png)
+![imagen_22_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_22_1.png)
 
 2.3.8 Colección ordenada (Ordered collection)
 
@@ -533,13 +533,13 @@ En el mapeo del `<ibag>` en el archivo de mapeo `Produto.hbm.xml` que correspond
 
 Unidad 4: HIBERNATE-Herramienta ORM
 
-![imagen_23_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_23_1.png)
+![imagen_23_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_23_1.png)
 
 2.3.9 Colección de compoñentes
 
 Hasta ahora hemos mapeado colecciones de un solo dato. Podemos tener varios datos como propiedades en una clase compoñente y tener una colección de ellas. La clase compoñente se implementa como un POJO sin identificador.
 
-![imagen_23_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_23_2.png)
+![imagen_23_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_23_2.png)
 
 Imaginemos por ejemplo que tenemos el siguiente modelo de datos.
 
@@ -562,7 +562,7 @@ Ejemplo:
 
 En el archivo `produto.hbm.xml` se agrega el subelemento `<parent>` para mapear una propiedad de la clase compoñente como una referencia a la entidad propietaria.
 
-![imagen_24_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_24_1.png)
+![imagen_24_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_24_1.png)
 
 2.3.10 Navegación bidireccional en las colecciones de compoñentes
 
@@ -572,7 +572,7 @@ El elemento `<composite-element>` permite un subelemento `<parent>` que mapea un
 
 En el ejemplo anterior, la navegación de `Producto` a `Imaxe` es unidireccional, es decir, podemos obtener las imágenes de un producto mediante `imágenes.getImágenes().iterator()`. Si queremos obtener a partir de una imagen su producto con el método `prod.getProducto`, tendríamos que agregar en el XML el subelemento `<parent>`.
 
-![imagen_24_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_24_2.png)
+![imagen_24_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_24_2.png)
 
 En la tarea 7 haremos ejercicios de cómo mapear los elementos de una colección utilizando diferentes interfaces de colecciones soportadas por Hibernate.
 
@@ -586,7 +586,7 @@ Hibernate denomina “compoñente” á clase que traslada o seu estado persiste
 
 En programación orientada a obxectos, o termo "compoñente" fai referencia ao concepto de composición. A clase compoñente non necesita un atributo identificador e tampouco o seu propio ficheiro hbm.xml. Mapéase no mesmo ficheiro de mapeo da súa clase propietaria utilizando a etiqueta `<component>`:
 
-![imagen_25_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_25_2.png)
+![imagen_25_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_25_2.png)
 
 Tamén se permite a navegación bidireccional, igual que no mapeo das coleccións de compoñentes vistos anteriormente e segue a mesma lóxica. O elemento `<component>`, igual que o elemento `<composite-element>` para o mapeo das coleccións de compoñentes, permite un subelemento `<parent>` que mapea unha propiedade da clase do compoñente como unha referencia á entidade propietaria.
 
@@ -612,7 +612,7 @@ O mapeo de asociacións entre clases é unha das partes fundamentais de calquera
 
 - Todas as clases participantes deben ter unha clave primaria na base de datos e polo tanto, unha táboa propia.
 
-![imagen_26_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_26_1.png)
+![imagen_26_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_26_1.png)
 
 - Cada instancia das clases entidades ten un completo ciclo de vida independente. Os novos obxectos son transitorios e teñen que facerse persistentes cada un, se queremos almacenalos na base de datos. A súa relación non inflúe no seu ciclo de vida, son independientes un do outro. Se a clase fose un compoñente de tipo valor, o estado dunha instancia súa sería o mesmo que o estado da súa entidade propietaria. Neste caso, non obstante, cada clase entidade é unha entidade separada co seu propio estado completamente independente.
 
@@ -718,7 +718,7 @@ A asociación represéntase:
 - Na base de datos, mediante claves foráneas.
 - Si a navegación é bidireccional, dúas propiedades de dúas clases diferentes están representadas pola mesma clave foránea na base de datos.
 
-![imagen_29_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_29_1.png)
+![imagen_29_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_29_1.png)
 
 ### Asociación One-to-One
 
@@ -734,7 +734,7 @@ A clase Persoa ten unha propiedade chamada enderezo da clase Enderezo, mentres q
 
 Para mapear a propiedade enderezo no ficheiro Persoa.hbm.xml engadimos:
 
-![imagen_30_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_30_2.png)
+![imagen_30_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_30_2.png)
 
 O atributo cascade indica a Hibernate como debe actuar cando realicemos as operacións de persistencia de gardar, borrar, ler, etc. No exemplo o valor é all indicando que deberemos realizar a mesma operación en Persoa que en Enderezo.
 
@@ -745,17 +745,17 @@ O atributo cascade indica a Hibernate como debe actuar cando realicemos as opera
 
 Agora cada entidade ten a súa propia clave e necesítase unha columna extra nunha das táboas para establecer a clave foránea. As relacións vanse facer a través desta clave foránea.
 
-![imagen_32_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_32_1.png)
+![imagen_32_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_32_1.png)
 
 Para mapear a propiedade `enderezo` no ficheiro `Persoa.hbm.xml` engadimos:
 
-![imagen_32_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_32_2.png)
+![imagen_32_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_32_2.png)
 
 Para establecer a relación das entidades a través da clave foránea temos que utilizar `<many-to-one>` en lugar de `<one-to-one>`, por que temos unha entidade `Persoa` que ten unha clave foránea `IdEnderezo` apuntando a outra entidade `Enderezo`. Co atributo `unique="true"` impedimos que dúas instancias de `Persoa` compartan a mesma instancia `Enderezo`.
 
 Finalmente, si queremos que a asociación sexa bidireccional, no ficheiro `Enderezo.hbm.xml` poñeriamos:
 
-![imagen_32_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_32_3.png)
+![imagen_32_3.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_32_3.png)
 
 ## Asociación One-to-Many ou Many-to-One
 
@@ -887,12 +887,12 @@ La relación muchos a muchos consiste en que una instancia de la clase A puede e
 
 Unidad 4: HIBERNATE-Herramienta ORM
 
-![imagen_37_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_37_1.png)
+![imagen_37_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_37_1.png)
 
 As relacións moitos a moitos no modelo relacional impleméntanse cunha táboa intermedia. 
 Exemplo: 
 
-![imagen_37_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_37_2.png)
+![imagen_37_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_37_2.png)
 
 As asociacións moitos a moitos represéntanse mediante a etiqueta `<many-to-many>`.
 
@@ -900,11 +900,11 @@ As asociacións moitos a moitos represéntanse mediante a etiqueta `<many-to-man
     *   Só a entidade "A" ten unha referencia aos obxectos de tipo "B".
     *   Esta relación está representada por unha colección e a entidade "A" pode acceder a cada un dos obxectos de tipo "B" desa colección.
 
-![imagen_37_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_37_3.png)
+![imagen_37_3.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_37_3.png)
 
 Para mapear a propiedade da colección, no ficheiro Persoa.hbm.xml engadimos:
 
-![imagen_37_4.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_37_4.png)
+![imagen_37_4.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_37_4.png)
 
 *   No caso de que a relación sexa bidireccional:
     *   A entidade "A" ten unha referencia aos obxectos de tipo "B" e entidade “B" ten unha referencia aos obxectos de tipo "A".
@@ -917,15 +917,15 @@ Unidad 4: HIBERNATE-Herramienta ORM
     *   O mesmo principio rexe nas asociacións moitos-a-moitos: cada fila da táboa intermedia (de enlace) está representada por dous elementos de colección.
     *   Unha asociación entre la entidade A e B está representada en memoria por unha instancia A da colección de B, pero tamén por unha instancia B na colección de A.
 
-![imagen_38_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_38_1.png)
+![imagen_38_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_38_1.png)
 
 Para mapear a propiedade de colección Actividades, no ficheiro Persoa.hbm.xml engadimos:
 
-![imagen_38_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_38_2.png)
+![imagen_38_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_38_2.png)
 
 Para mapear a propiedade de colección Persoas, no ficheiro Actividade.hbm.xml engadimos:
 
-![imagen_38_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_38_3.png)
+![imagen_38_3.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_38_3.png)
 
 O `inverse="true"` na colección actividades do ficheiro persoa.hbm.xml, dille a Hibernate que ignore os cambios feitos na colección actividades e utilice o outro extremo da asociación, a colección persoas para a sincronización coa base de datos.
 
@@ -937,11 +937,11 @@ Unidad 4: HIBERNATE-Herramienta ORM
 
 Supoñamos na relación anterior entre Actividades e Persoas, que queiramos rexistrar a nota obtida de cada persoa na realización da actividade.
 
-![imagen_39_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_39_1.png)
+![imagen_39_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_39_1.png)
 
 Na base de datos, o atributo nota engadiríase á táboa intermedia (join), como se mostra a continuación:
 
-![imagen_39_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_39_2.png)
+![imagen_39_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_39_2.png)
 
 Hai varias estratexias para implementar isto.
 
@@ -949,22 +949,22 @@ Mapeado da táboa join nunha entidade intermedia
 
 Unha opción consiste en establecer entre as entidades Persoa e Actividade, unha entidade PersoaActividade. O identificador de esta entidade é a composición de IDActiv e IdPersoa. O diagrama de clases amósase a continuación:
 
-![imagen_39_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_39_3.png)
+![imagen_39_3.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_39_3.png)
 
 
 Unidad 4: HIBERNATE-Herramienta ORM
 
-![imagen_40_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_40_1.png)
+![imagen_40_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_40_1.png)
 
 As dos asociacións `<many-to-one>` son só de lectura; insert e update están postos a false. Isto é necesario porque as columnas están mapeadas dúas veces, unha na clave composta (que é responsable da inserción dos valores) e outra nas asociacións many-to-many. As entidades Actividade e Persoa teñen unha asociación one-to-many coa entidade PersoaActividade.
 
 No ficheiro Persoa.hbm.xml, engadimos:
 
-![imagen_40_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_40_2.png)
+![imagen_40_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_40_2.png)
 
 No ficheiro Actividade.hbm.xml, engadimos:
 
-![imagen_40_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_40_3.png)
+![imagen_40_3.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_40_3.png)
 
 Unha vantaxe desta estratexia é a posibilidade da navegación bidireccional. O inconvinte é que o código é máis complexo para xestionar as instancias de PersoaActividade, para crear e borrar as asociacións (teñen que gravarse e borrarse independentemente) e para a xestión da clave composta. Con todo, podemos permitir persistencia transitiva coas opcións de cascade nas coleccións de Persoa e actividade.
 
@@ -974,11 +974,11 @@ Outra alternativa é facer a clase PersoaActividade de tipo valor, sen un identi
 
 Unidad 4: HIBERNATE-Herramienta ORM
 
-![imagen_41_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_41_1.png)
+![imagen_41_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_41_1.png)
 
 No ficheiro Persoa.hbm.xml, engadimos o mapeo da clase compoñente.
 
-![imagen_41_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_41_2.png)
+![imagen_41_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_41_2.png)
 
 O inconvinte é que non hai modo de permitir navegación bidireccional: un compoñente como PersoaActividade non pode por definición ter referencias compartidas. Non podemos navegar dende Actividade a PersoaActividade. Non obstante, podemos executar unha consulta para atopar os obxectos que necesitemos.
 
@@ -1018,7 +1018,7 @@ Mapeamento da herdanza (xerarquías)
 
 As clases java que queremos facer persistentes con Hibernate poden ter herdanza, é dicir, unhas clases herdan doutras. Por exemplo:
 
-![imagen_42_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_42_1.png)
+![imagen_42_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_42_1.png)
 
 A herdanza é un dos desaxustes estruturais entre a orientación a obxectos e as bases de datos relacionais. Os SXBD non soportan herdanza en forma nativa e polo tanto, é necesario mapear. Catro posibles estratexias de mapeo:
 
@@ -1029,13 +1029,13 @@ Unidad 4: HIBERNATE-Herramienta ORM
 
 * Créase unha táboa por cada subclase concreta, redundando todos os atributos.
 
-![imagen_43_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_43_2.png)
+![imagen_43_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_43_2.png)
 
 Mapeamos cada subclase concreta á súa táboa correspondente, do xeito usual e por separado. A superclase Persoa non se mapea.
 
 * Mapeamos a clase Empregado no ficheiro Empregado.hbm.xml:
 
-![imagen_43_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_43_3.png)
+![imagen_43_3.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_43_3.png)
 
 * Mapeamos a clase Desempregado no ficheiro Desempregado.hbm.xml:
 
@@ -1047,7 +1047,7 @@ Mapeo
 * Non soporta consultas polimórficas. Unha consulta contra a superclase debe executarse como varias SELECTs ou consultas HQL, unha por cada subclase concreta. A superclase non se pode consultar directamente.
 * Ex: non podemos recuperar dunha vez todas as persoas.
 
-![imagen_44_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_44_2.png)
+![imagen_44_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_44_2.png)
 
 * Non da soporte ás asociacións polimórficas. As asociacións na base de datos represéntanse habitualmente como claves foráneas. Na figura anterior, se mapeamos as subclases en diferentes táboas, unha asociación polimórfica coa súa superclase Persoa non se pode representar como unha relación de clave foránea. Isto sería problemático no noso modelo si a clase Persoa tivera unha relación con outra entidade, por exemplo, un a moitos con Vehículo, esta táboa Vehículo necesitaría unha columna cunha soa clave foránea que se tería que referenciar con ambas táboas das subclases e isto non é posible.
 * Ex: A clase persistente Vehículo ten a súa propia táboa asociada.
@@ -1055,7 +1055,7 @@ Mapeo
 
 ### Unidad 4: HIBERNATE-Herramienta ORM
 
-![imagen_45_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_45_1.png)
+![imagen_45_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_45_1.png)
 
 * Un problema conceptual adicional con esta estratexia de mapeamento é que algunhas columnas distintas en distintas táboas comparten a mesma semántica. Isto fai o sistema máis complexo. Por exemplo, un cambio nunha propiedade da superclase implica cambios en múltiples columnas o que fai moito máis difícil implementar restricións de integridade na base de datos.
 Recoméndase esta estratexia só no nivel superior da xerarquía onde o polimorfismo non é requirido e as modificacións das superclases non vai ser probable.
@@ -1067,7 +1067,7 @@ Como a anterior, cada clase concreta asóciase a unha táboa con todos os atribu
 * Cal é a superclase abstracta, as súas propiedades e como se mapean.
 * Cales son as subclases concretas, as súas propiedades e como se mapean nas táboas correspondentes.
 
-![imagen_45_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_45_2.png)
+![imagen_45_2.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_45_2.png)
 
 Seguimos tendo dúas táboas con columnas da superclase duplicadas pero o que é novo e un mapeamento especial de Hibernate que agora se inclúe na superclase. As subclases indícanse coa etiqueta:
 
@@ -1167,7 +1167,7 @@ Unidad 4: HIBERNATE-Herramienta ORM
 
 Tanto a superclase como as subclases son persistentes e tienen su propia táboa. Las relaciones de herdanza se representan mediante claves foráneas. Todas comparten la clave primaria.
 
-![imagen_49_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_49_1.png)
+![imagen_49_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_49_1.png)
 
 ### Se unha instancia da subclase Empregado é feita persistente
 
@@ -1195,7 +1195,7 @@ Tanto a superclase como as subclases son persistentes e tienen su propia táboa.
 
 ### Unidad 4: HIBERNATE-Herramienta ORM
 
-![imagen_50_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_50_1.png)
+![imagen_50_1.png](resources/Acceso a datos/UNIDAD4 HIBERNATE MAPEO CON FICHEROS XML/images/imagen_50_1.png)
 
 ### Vantajas de esta estratexia
 
