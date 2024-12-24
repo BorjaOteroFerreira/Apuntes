@@ -59,7 +59,7 @@ Unidad 3: Acceso a base de datos relacionais
 
 - Usar unha biblioteca de funcións de base de datos. En lugar de modificar os compiladores ou empregar precompiladores, pódense utilizar librerías de funcións de acceso á base de datos. Esta aproximación proporciona, o que se coñece como API (Application Programming Interface) para acceder a base de datos. As aplicacións só se comunican coa API e esta é a encargada de comunicarse coa base de datos.
 
-![imagen_3_1.png](images/imagen_3_1.png)
+![imagen_3_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_3_1.png)
 
 Exemplo de Acceso a base de datos utilizando unha biblioteca de funcións
 
