@@ -1,75 +1,34 @@
+# Contenidos
 
-
-
-Contenidos
----------
-
-1. Introducción
----------
-
-Este trabajo está bajo una licencia de Creative Commons Reconocimiento-CompartirIgual 4.0 Internacional.
-
-2. APIs gráficos 2D y 3D
----------
-
-3. Generación y estructura de un proyecto
----------
-
-4. Ciclo de vida (bucle del juego)
----------
-
-5. Módulos de la librería
----------
-
-    * Módulo de aplicación
-    * Log
-    * Salir del juego
-    * Almacenamiento de datos
-    * Tipo y versión de la plataforma
-
-6. Módulo de gráficos
----------
-
-7. Módulo de archivos
----------
-
-8. Módulo de audio
----------
-
-9. Módulo de entrada
----------
-
-10. Módulo de comunicaciones
----------
-
-11. Dibujando en la pantalla
----------
-
-    * ShapeRenderer y SpriteBatch
-    * Texture y TextureRegion
-    * Sprite
-    * Atlas
-    * Animation
-    * Textos y fuentes
-    * Blending
-    * TiledMap
-
-12. Velocidad y renderizado
----------
-
-13. La cámara
----------
-
-14. Gestión de la entrada
----------
-
-15. El interface Screen y la clase Game
----------
-
-16. Consideraciones sobre optimización
----------
-
- de los índices y el número de página, y he transformado el contenido a lista markdown con guiones. También he agregado un salto de línea tras un punto final en los párrafos y en las listas.
+1. [Introducción](#introducción)
+2. [APIs gráficos 2D y 3D](#apis-gráficos-2d-y-3d)
+3. [Generación y estructura de un proyecto](#generación-y-estructura-de-un-proyecto)
+4. [Ciclo de vida (bucle del juego)](#ciclo-de-vida-bucle-del-juego)
+5. [Módulos de la librería](#módulos-de-la-librería)
+   - [Módulo de aplicación](#módulo-de-aplicación)
+   - [Log](#log)
+   - [Salir del juego](#salir-del-juego)
+   - [Almacenamiento de datos](#almacenamiento-de-datos)
+   - [Tipo y versión de la plataforma](#tipo-y-versión-de-la-plataforma)
+6. [Módulo de gráficos](#módulo-de-gráficos)
+7. [Módulo de archivos](#módulo-de-archivos)
+8. [Módulo de audio](#módulo-de-audio)
+9. [Módulo de entrada](#módulo-de-entrada)
+10. [Módulo de comunicaciones](#módulo-de-comunicaciones)
+11. [Dibujando en la pantalla](#dibujando-en-la-pantalla)
+    - [ShapeRenderer y SpriteBatch](#shaperenderer-y-spritebatch)
+    - [Texture y TextureRegion](#texture-y-textureregion)
+    - [Sprite](#sprite)
+    - [Atlas](#atlas)
+    - [Animation](#animation)
+    - [Textos y fuentes](#textos-y-fuentes)
+    - [Blending](#blending)
+    - [TiledMap](#tiledmap)
+12. [Velocidad y renderizado](#velocidad-y-renderizado)
+13. [La cámara](#la-cámara)
+14. [Gestión de la entrada](#gestión-de-la-entrada)
+15. [El interface Screen y la clase Game](#el-interface-screen-y-la-clase-game)
+16. [Consideraciones sobre optimización](#consideraciones-sobre-optimizacion)
 
 
 Introducción
