@@ -47,7 +47,7 @@ Existen varias aproximacións para interactuar cunha base de datos dende un prog
 
 Necesítase un precompilador que prové o vendedor do SGBD (en Oracle, por exemplo: Prol*C) que traduce as sentenzas SQL converténdoas en chamadas a unhas librerías específicas, polo tanto, é dependente dun SXBD relacional en particular.
 
-![imagen_2_1.png](/resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_2_1.png)
+![imagen_2_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_2_1.png)
 
 
 Exemplo do proceso de compilación dun programa con sentenzas SQL embebidas na linguaxe C
@@ -59,7 +59,7 @@ Unidad 3: Acceso a base de datos relacionais
 
 - Usar unha biblioteca de funcións de base de datos. En lugar de modificar os compiladores ou empregar precompiladores, pódense utilizar librerías de funcións de acceso á base de datos. Esta aproximación proporciona, o que se coñece como API (Application Programming Interface) para acceder a base de datos. As aplicacións só se comunican coa API e esta é a encargada de comunicarse coa base de datos.
 
-![imagen_3_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales//images/imagen_3_1.png)
+![imagen_3_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_3_1.png)
 
 Exemplo de Acceso a base de datos utilizando unha biblioteca de funcións
 
@@ -73,7 +73,7 @@ Existen varias API de acceso a base de datos:
 
 - APIs nativas: a maioría dos fabricantes de SXBD ofrecen APIS nativas propias para acceder as súas bases de datos e que son únicas.
 
-![imagen_3_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_3_2.png)
+![imagen_3_2.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_3_2.png)
 
 Estrutura xeral de acceso a distintas bases de datos utilizando APIS Nativas de cada fabricante
 
@@ -99,7 +99,7 @@ As tarefas específicas realizadas polos conectadores son:
 - O envío das instrucións SQL para a súa execución ao SXBD. Ás veces implica converter as instrucións SQL a instrucións SQL do SXBD específico.
 - A recuperación dos datos proporcionados polo SXBD, incluíndo a conversión de tipos de datos segundo o especificado pola aplicación.
 
-![imagen_4_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_4_1.png)
+![imagen_4_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_4_1.png)
 
 Estrutura xeral de acceso a distintas bases de datos utilizando APIS standards e conectadores
 
@@ -188,7 +188,7 @@ Conectividade JDBC
 
 Java proporciona acceso a base de datos relacionais, dende a versión 1.1, empregando o conxunto de clases e interfaces da API JDBC.
 
-![imagen_7_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_7_1.png)
+![imagen_7_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_7_1.png)
 
 Versións do API JDBC
 
@@ -207,7 +207,7 @@ Neste modelo a aplicación JAVA conéctase directamente co SXBD. Requírese que 
 
 A aplicación cliente e a base de datos poden estar en máquinas diferentes. Esta é a arquitectura típica cliente/servidor, coa máquina do usuario que contén a aplicación como cliente, e a máquina que contén á base de datos e o SXBD como servidor. A comunicación entre o cliente e o servidor realízase a través da rede (Internet ou Intranet).
 
-![imagen_8_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_8_1.png)
+![imagen_8_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_8_1.png)
 
 Modelo de dúas capas de conexión do conectador JDBC á base de datos
 
@@ -215,7 +215,7 @@ Modelo de tres capas
 
 Neste modelo, as sentenzas SQL son enviadas a unha capa intermedia de servizos que se encarga de envialas ao SXBD. O SXBD procesa as sentenzas e retorna os resultados á capa intermedia que se encarga de envialos á aplicación do usuario.
 
-![imagen_8_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_8_2.png)
+![imagen_8_2.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_8_2.png)
 
 Modelo de tres capas de conexión do conectador JDBC á base de datos
 
@@ -243,7 +243,7 @@ Permite ao programador acceder a unha base de datos ODBC existente mediante JDBC
 
 ### Funcionamento do conectador tipo 1 ponte JDBC-ODBC
 
-![imagen_9_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_9_1.png)
+![imagen_9_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_9_1.png)
 
 O conectador ODBC, ao utilizar código nativo, debe ser instalado e configurado en cada máquina cliente da base de datos. Isto pode representar un gran inconveniente para unha aplicación en producción, por iso, este conectador é máis adecuado en empresas onde a instalación dos clientes non supón gran problema, ou ben para un servidor de aplicacións nunha arquitectura de tres capas.
 
@@ -253,7 +253,7 @@ Este conectador converte as chamadas JDBC en chamados a métodos nativos do SXBD
 
 ### Funcionamento do conectador tipo 2 JDBC API Nativo
 
-![imagen_10_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_10_1.png)
+![imagen_10_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_10_1.png)
 
 Este tipo de conectador é mellor que a ponte JDBC-ODBC, xa que as chamadas JDBC non se converten en chamadas ODBC, senón que son chamadas ás librarías nativas de forma directa.
 
@@ -264,7 +264,7 @@ O conectador de tipo JDBC-Net está escrito completamente en Java e comunícase 
 
 # Unidad 3: Acceso a base de datos relacionais
 
-![imagen_11_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_11_1.png)
+![imagen_11_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_11_1.png)
 
 Funcionamento do conectador tipo 3 JDBC NET puro nativo
 No é necesario instalar código nativo nas máquinas clientes, xa que é posible implementar este conectador utilizando só tecnoloxía Java. O servidor intermediario pode prover conectividade con varias bases de datos distintas pero soamente será necesario un conectador JDBC. Este tipo de conectador é moi flexible, portable e pódese utilizar en applets. A súa utilización é ideal para aplicacións con arquitectura baseada no modelo de tres capas. Un exemplo de utilización deste conectador pode ser un applet que se comunica cunha aplicación intermediaria no servidor e é esta aplicación intermediaria a encargada de acceder á base de datos. Un inconveniente é que o uso do servidor intermedio fai necesariamente a transmisión dos datos máis lenta que usando os conectadores tipo 2 ou 4.
@@ -272,7 +272,7 @@ No é necesario instalar código nativo nas máquinas clientes, xa que é posibl
 Tipo 4: Conectador de Protocolo Nativo
 O conectador de tipo Protocolo Nativo está escrito completamente en Java e comunícase directamente co SXBD utilizando un protocolo nativo do servidor, isto permite que o cliente chame á base de datos directamente. Estes conectadores son propietarios polo que son proporcionados polos mesmos provedores dos diferentes SXBD.
 
-![imagen_11_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_11_2.png)
+![imagen_11_2.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_11_2.png)
 
 Funcionamento do conectador tipo e JDBC protocolo nativo
 
@@ -295,11 +295,11 @@ As clases e interfaces básicas da API JDBC son as seguintes:
 - Procesamento do resultado da execución de peticións.
 - Lectura dos metadatos sobre a estrutura da base de datos.
 
-![imagen_12_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_12_1.png)
+![imagen_12_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_12_1.png)
 
 Plataforma Java 2, Standard Edition.
 
-![imagen_12_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_12_2.png)
+![imagen_12_2.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_12_2.png)
 
 
 Unidad 3: Acceso a base de datos relacionais
@@ -337,7 +337,7 @@ Nesta figura móstrase as clases e interfaces básicas que compoñen o paquete J
 
 Unidad 3: Acceso a base de datos relacionais
 
-![imagen_14_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_14_1.png)
+![imagen_14_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_14_1.png)
 
 Funcionamento básico dun programa que acceda a unha base de datos utilizando un conectador JDBC
 
@@ -435,7 +435,7 @@ La conexión devolta pelo método DriverManager.getConnection é unha conexión 
 
 ## Figura 1: Esquema de selección del conectador JDBC adecuado
 
-![imagen_16_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_16_1.png)
+![imagen_16_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_16_1.png)
 
 ## Ejemplo de conexión a la base de datos MySQL demodb
 
@@ -716,7 +716,7 @@ Cada una de estas interfaces está especializada para enviar un tipo específico
 
 Unidad 3: Acceso a base de datos relacionais
 
-![imagen_22_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_22_1.png)
+![imagen_22_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_22_1.png)
 
 Nesta imagen se muestra la jerarquía de la interfaz Statement, PreparedStatement y CallableStatement
 
@@ -1010,7 +1010,7 @@ Si nestes métodos se utiliza o índice da columna, débese considerar que os í
 
 O mapeo ou conversión que se realiza entre tipos JDBC e clases Java, podémolo observar na táboa que aparece a continuación:
 
-![imagen_27_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_27_1.png)
+![imagen_27_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_27_1.png)
 
 Para determinar si un valor devolto foi nulo, é dicir un JDBC NULL, primeiro débese ler a columna e logo lanzar o método wasNull() do interface ResultSet, que devolverá true ou false segundo a situación.
 
@@ -1031,7 +1031,7 @@ Execución de sentenzas precompiladas: A interface PreparedStatement
 
 Esta interface, do mesmo xeito que a interface Statement, permítenos executar sentenzas SQL sobre unha conexión establecida cunha base de datos. Pero neste caso, imos executar sentenzas SQL máis especializadas. Estas sentenzas SQL vanse a denominar sentenzas SQL precompiladas e van recibir parámetros de entrada.
 
-![imagen_28_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_28_1.png)
+![imagen_28_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_28_1.png)
 
 Nesta imaxen mostrase a herdanza da interface PreparedStatement
 
@@ -1163,7 +1163,7 @@ sentenza.executeUpdate();
 
 Unidad 3: Acceso a base de datos relacionais
 
-![imagen_33_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_33_1.png)
+![imagen_33_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_33_1.png)
 
 Nesta imagen mostrase a herencia da interface CallableStatement
 
@@ -1898,7 +1898,7 @@ Para garantir las propiedades ACID, las transacciones tienen que pasar por deter
 
 Unidad 3: Acceso a base de datos relacionais
 
-![imagen_52_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_52_1.png)
+![imagen_52_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_52_1.png)
 
 El control de las transacciones por las aplicaciones supón la confirmación o retroceso de las operaciones para dejar la base de datos en un estado consistente. Este control se realiza mediante dos sentencias:
 
@@ -2038,11 +2038,11 @@ Existen tres problemas comunes en los que una transacción, a pesar de ser corre
 
 * Obténganse lecturas diferentes de un conjunto de tuplas (filas) durante la misma transacción.
 
-![imagen_56_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_56_1.png)
+![imagen_56_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_56_1.png)
 
-![imagen_56_2.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_56_2.png)
+![imagen_56_2.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_56_2.png)
 
-![imagen_56_3.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_56_3.png)
+![imagen_56_3.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_56_3.png)
 
 ### Razones para permitir la concurrencia
 
@@ -2091,7 +2091,7 @@ Unidad 3: Acceso a base de datos relacionais
 
 - Una lectura pantasma ocurre cuando una transacción adquiere datos mediante alguna consulta, otra transacción modifica algunos de los datos, y la transacción original recupera los datos una segunda vez. La primera transacción ahora tendrá un conjunto de resultados diferentes, que podrían contener datos pantasmas.
 
-![imagen_57_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_57_1.png)
+![imagen_57_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_57_1.png)
 
 ### Técnicas de control de concurrencia. Bloqueos
 
@@ -2262,7 +2262,7 @@ Na seguinte figura, móstrase un exemplo de utilización de puntos de retorno. A
 
 Unidad 3: Acceso a base de datos relacionais
 
-![imagen_62_1.png](resources/Acceso a datos/UNIDAD3-Acceso a base de datos relacionales/images/imagen_62_1.png)
+![imagen_62_1.png](resources/Acceso%20a%20datos/UNIDAD3-Acceso%20a%20base%20de%20datos%20relacionales/images/imagen_62_1.png)
 
 O obxecto Connection dispón de dous novos métodos que axudan a administrar os puntos de rescate.
 
